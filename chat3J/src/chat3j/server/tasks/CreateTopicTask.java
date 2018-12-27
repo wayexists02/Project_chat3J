@@ -2,7 +2,6 @@ package chat3j.server.tasks;
 
 import chat3j.messages.TopicCreationMsg;
 import chat3j.server.Chat3JMaster;
-import chat3j.server.Topic;
 import com.esotericsoftware.kryonet.Connection;
 
 /**

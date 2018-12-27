@@ -78,8 +78,17 @@ public class Publisher {
         stop = true;
     }
 
-    public void publish() {
+    public void broadcast(Message msg) {
+        for (Connection conn: subscribers) {
+            conn.sendUDP(msg);
+        }
+    }
 
+    public void close() {
+        for (Connection conn: subscribers) {
+            conn.close();
+        }
+        server.close();
     }
 
     // 이 토픽에 다른 클라이언트가 들어오면 이 메소드를 통해 그 쿨라이언트와 통신연결

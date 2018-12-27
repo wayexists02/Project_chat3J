@@ -29,6 +29,9 @@ public class Chat3JNode {
     private int tcp = 10321;
     private int udp = 10322;
 
+    // 마스터의 주소
+    private String address;
+
     //메인 루프는 ok=true 이면 돈다.
     private boolean ok;
 
@@ -57,7 +60,7 @@ public class Chat3JNode {
 
             Message.registerMessage(clientToMaster);
 
-            clientToMaster.connect(10000, "127.0.0.1", tcp, udp);
+            clientToMaster.connect(10000, address, tcp, udp);
             logger.info("Connected to master.");
 
             clientToMaster.addListener(new ReceiveListener(this));
@@ -75,23 +78,10 @@ public class Chat3JNode {
     // 메인 루프
     public void run() {
 
-        /// DEBUG ///
-        createTopic("A"); // 작동확인을 위해 추가함.
-        /////////////
-
         while (ok) {
             checkCommand(); // 작업이 작업 큐에 있으면 수행.
             Thread.yield(); // 다른 스레드에게 프로세서 넘김.
         }
-    }
-
-    // 미구현. 외부 입력 받기 위한 메소드
-    public void requestTopicCreation() {
-
-    }
-    // 미구현. 외부 입력 받기 위한 메소드
-    public void requestClose() {
-
     }
 
     // 새로운 사람이 토픽에 들어오면 그 사람의 정보를 마스터로부터 얻어서 연결함.
@@ -109,7 +99,6 @@ public class Chat3JNode {
         if (publishers.containsKey(topic)) {
             logger.error("ERROR: Topic '" + topic + "' already exists!");
             pub.destroy();
-            return;
         }
         else { // 중복되지 않았으면, 토픽을 추가하고 마스터에게 토픽을 생성했다는 메시지 보냄.
             publishers.put(topic, pub);
@@ -128,6 +117,7 @@ public class Chat3JNode {
     public void close() {
         LeaveTopicMsg msg = new LeaveTopicMsg();
         msg.topics = new String[publishers.size()];
+        msg.close = true;
         int i = 0;
 
         for (String topic : publishers.keySet()) {
@@ -136,6 +126,36 @@ public class Chat3JNode {
         }
 
         clientToMaster.sendTCP(msg);
+    }
+
+    public void leaveFromTopic(String topic) {
+        LeaveTopicMsg msg = new LeaveTopicMsg();
+        msg.topics = new String[1];
+        msg.topics[0] = topic;
+        msg.close = false;
+        clientToMaster.sendTCP(msg);
+    }
+
+    public void setMasterAddress(String addr) {
+        this.address = addr;
+    }
+
+    public void setMasterPort(int tcp, int udp) {
+        this.tcp = tcp;
+        this.udp = udp;
+    }
+
+    public void actualClose() {
+        for (Publisher pub: publishers.values()) {
+            pub.close();
+        }
+        publishers.clear();
+        clientToMaster.close();
+    }
+
+    public void actualLeaveTopic(String topic) {
+        publishers.get(topic).close();
+        publishers.remove(topic);
     }
 
     // 만약, 다른 토픽에 들어가는 것이라면, 이 함수 호출
@@ -163,11 +183,6 @@ public class Chat3JNode {
                 pub.destroy();
                 publishers.remove(topic);
             }
-
-            //debug 작동 확인을 위해 추가해놓은 것
-            RequestTopicMsg msg = new RequestTopicMsg();
-            msg.topic = "A";
-            clientToMaster.sendTCP(msg);
         }
         else { // 승인을 받았으면 퍼블리셔를 작동시킨다
             pub.start();
@@ -223,6 +238,13 @@ public class Chat3JNode {
 
                 // 작업 큐에 작업을 생성.
                 ConnectToNewCommand cmd = new ConnectToNewCommand(conn, msg);
+                node.commandQueue.add(cmd);
+            }
+            else if (obj instanceof LeaveTopicMsg) {
+                LeaveTopicMsg msg = (LeaveTopicMsg) obj;
+                node.logger.info("RE: Close operation");
+
+                CloseCommand cmd = new CloseCommand(conn, msg);
                 node.commandQueue.add(cmd);
             }
 

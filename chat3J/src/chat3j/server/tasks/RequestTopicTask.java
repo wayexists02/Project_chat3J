@@ -1,6 +1,5 @@
 package chat3j.server.tasks;
 
-import chat3j.messages.EnterTopicMsg;
 import chat3j.messages.RequestTopicMsg;
 import chat3j.server.Chat3JMaster;
 import chat3j.server.ClientInfo;

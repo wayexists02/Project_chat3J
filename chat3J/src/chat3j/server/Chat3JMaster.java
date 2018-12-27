@@ -40,6 +40,11 @@ public class Chat3JMaster {
         this.ok = true;
     }
 
+    public void setPort(int tcp, int udp) {
+        this.tcp = tcp;
+        this.udp = udp;
+    }
+
     // 마스터 시작
     public void start() {
         try { // 마스터 소켓 세팅
@@ -94,12 +99,6 @@ public class Chat3JMaster {
             topicList.put(topic, newtopic);
             return true;
         }
-    }
-
-    // 마스터 포트변경 (미구현)
-    public void setPort(int tcp, int udp) {
-        this.tcp = tcp;
-        this.udp = udp;
     }
 
     // 마스터의 리스너
