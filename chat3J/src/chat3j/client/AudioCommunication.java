@@ -1,6 +1,5 @@
 package chat3j.client;
 
-import chat3j.client.exceptions.AudioConnectException;
 import chat3j.client.exceptions.ChatException;
 import com.esotericsoftware.kryonet.Connection;
 
