@@ -18,7 +18,6 @@ public class MasterController {
         master.setPort(tcpPort, udpPort);
         new Thread(() -> master.start()).start();
     }
-
     public void close() {
 
     }

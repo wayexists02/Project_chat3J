@@ -5,6 +5,7 @@ import chat3j.messages.*;
 import chat3j.utils.Logger;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.FrameworkMessage;
 import com.esotericsoftware.kryonet.Listener;
 
 import java.io.IOException;
@@ -113,6 +114,7 @@ public class Chat3JNode {
 
     }
 
+
     // 미구현. 닫기옵션
     public void close() {
         LeaveTopicMsg msg = new LeaveTopicMsg();
@@ -157,7 +159,13 @@ public class Chat3JNode {
         publishers.get(topic).close();
         publishers.remove(topic);
     }
+    // 새로운 토픽에 들어가기 위한 함수(추가된 부분)
+    public void enterTopic(String topic) {
+        RequestTopicMsg msg = new RequestTopicMsg();
+        msg.topic = topic;
 
+        clientToMaster.sendTCP(msg);
+    }
     // 만약, 다른 토픽에 들어가는 것이라면, 이 함수 호출
     // 해당 토픽의 다른 클라이언트와 통신을 위해 이 클라이언트도 이 토픽에 해당하는 퍼블리셔 생성
     public void addPublisher(String topic) {
@@ -211,6 +219,7 @@ public class Chat3JNode {
 
         @Override
         public void received(Connection conn, Object obj) { // 마스터로부터 메시지 수신
+            if(obj instanceof FrameworkMessage) return;//tcp통신 유지를 위해 keepalive메시지를 계속 교환
             node.logger.info("");
             node.logger.info("----- New Message -----");
 

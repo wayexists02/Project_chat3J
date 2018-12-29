@@ -13,5 +13,6 @@ public class Message {
         endPoint.getKryo().register(RequestTopicMsg.class);
         endPoint.getKryo().register(TopicCreationMsg.class);
         endPoint.getKryo().register(ReadyForEnterMsg.class);
+
     }
 }
