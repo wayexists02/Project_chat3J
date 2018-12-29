@@ -40,6 +40,7 @@ public class Chat3JMaster {
         this.ok = true;
     }
 
+    // 마스터 포트를 설정한다.
     public void setPort(int tcp, int udp) {
         this.tcp = tcp;
         this.udp = udp;

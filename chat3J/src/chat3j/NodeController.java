@@ -17,6 +17,7 @@ public class NodeController {
         this.givenMasterInfo = false;
     }
 
+    // 노드를 시작한다.
     public boolean open() {
         if (!givenMasterInfo) {
             Logger.getLogger().error("You must give master information!");
@@ -26,15 +27,23 @@ public class NodeController {
         new Thread(() -> node.start()).start();
         return true;
     }
+
+    // 노드를 닫는다.
     public void close() {
         new Thread(() -> node.close()).start();
     }
+
+    // 토픽을 새로 생성한다.
     public void createTopic(final String topic) {
         new Thread(() -> node.createTopic(topic)).start();
     }
+
+    // 토픽을 떠난다.
     public void exitFromTopic(final String topic) {
         new Thread(() -> node.leaveFromTopic(topic)).start();
     }
+
+    // 마스터의 주소, 포트번호를 설정한다.
     public void setMasterInformation(final String ipAddr, final int tcpPort, final int udpPort) {
         new Thread(() -> node.setMasterAddress(ipAddr)).start();
         new Thread(() -> node.setMasterPort(tcpPort, udpPort)).start();

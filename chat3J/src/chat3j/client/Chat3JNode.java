@@ -113,13 +113,15 @@ public class Chat3JNode {
 
     }
 
-    // 미구현. 닫기옵션
+    // 노드를 닫는다. 연결 모두종료
     public void close() {
+        // 종료 의사를 마스터에게 보냄
         LeaveTopicMsg msg = new LeaveTopicMsg();
         msg.topics = new String[publishers.size()];
-        msg.close = true;
+        msg.close = true; // 아예 연결을 끊겠다는 의미
         int i = 0;
 
+        // 모든 토픽에서 나가겠다는 의사 전송
         for (String topic : publishers.keySet()) {
             msg.topics[i] = topic;
             i += 1;
@@ -128,7 +130,9 @@ public class Chat3JNode {
         clientToMaster.sendTCP(msg);
     }
 
+    // 하나의 토픽에서 나간다. 해당 퍼블리셔만 종료
     public void leaveFromTopic(String topic) {
+        // 어떤 토픽에서 나가겠다는 메시지 전송
         LeaveTopicMsg msg = new LeaveTopicMsg();
         msg.topics = new String[1];
         msg.topics[0] = topic;
@@ -136,23 +140,31 @@ public class Chat3JNode {
         clientToMaster.sendTCP(msg);
     }
 
+    // 마스터의 IP주소 입력받음 start 전에 실행되어야함
     public void setMasterAddress(String addr) {
         this.address = addr;
     }
 
+    // 마스터의 포트번호 입력받음 start 전에 실행되어야함
     public void setMasterPort(int tcp, int udp) {
         this.tcp = tcp;
         this.udp = udp;
     }
 
+    // 마스터에서 종료 처리를 모두 마치면, 비로소 노드를 최종적으로 종료함
     public void actualClose() {
+        // 모든 퍼블리셔 종료
         for (Publisher pub: publishers.values()) {
             pub.close();
         }
+
+        // 퍼블리셔 리스트 클리어
         publishers.clear();
+        // 마스터와 연결 종료
         clientToMaster.close();
     }
 
+    // 마스터에서 토픽 exit 과정을 모두 마치면 비로소 해당 퍼블리셔 제거.
     public void actualLeaveTopic(String topic) {
         publishers.get(topic).close();
         publishers.remove(topic);
@@ -161,11 +173,13 @@ public class Chat3JNode {
     // 만약, 다른 토픽에 들어가는 것이라면, 이 함수 호출
     // 해당 토픽의 다른 클라이언트와 통신을 위해 이 클라이언트도 이 토픽에 해당하는 퍼블리셔 생성
     public void addPublisher(String topic) {
+        // 퍼블리셔 생성
         Publisher pub = new Publisher();
         pub.assignPort();
         publishers.put(topic, pub);
         pub.start();
 
+        // 마스터에게 나도 퍼블리셔가 준비되었으니 해당 퍼블리셔의 다른 노드들과의 연결 중계 요청
         ReadyForEnterMsg msg = new ReadyForEnterMsg();
         msg.topic = topic;
         msg.tcp = pub.tcp();

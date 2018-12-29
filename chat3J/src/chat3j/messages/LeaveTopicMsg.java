@@ -14,7 +14,6 @@ public class LeaveTopicMsg extends Message {
     public boolean close;
 
     /** response **/
-
     public boolean ok;
 
     public LeaveTopicMsg() {

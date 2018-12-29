@@ -14,11 +14,13 @@ public class MasterController {
         this.master = master;
     }
 
+    // 마스터를 시작한다.
     public void open(int tcpPort, int udpPort) {
         master.setPort(tcpPort, udpPort);
         new Thread(() -> master.start()).start();
     }
 
+    // 마스터를 닫는다.
     public void close() {
 
     }
