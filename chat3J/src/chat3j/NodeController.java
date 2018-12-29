@@ -32,6 +32,7 @@ public class NodeController {
     public void createTopic(final String topic) {
         new Thread(() -> node.createTopic(topic)).start();
     }
+    public void enterTopic(final String topic) { new Thread(() -> node.enterTopic(topic)).start();}
     public void exitFromTopic(final String topic) {
         new Thread(() -> node.leaveFromTopic(topic)).start();
     }
