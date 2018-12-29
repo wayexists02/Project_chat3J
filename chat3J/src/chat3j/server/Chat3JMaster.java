@@ -139,6 +139,17 @@ public class Chat3JMaster {
             return false;
         }
     }
+    public Connection[] getConnections() {
+        return master.getConnections();
+    }
+    public void close() {//모든 클라이언트와의 연결종료및 서버를 종료함
+        taskQueue.add(new CloseServerTask(null,null));
+    }
+    public void actualClose() {//마스터노드를 닫는다.
+        master.stop();
+        master.close();
+        ok = !ok;
+    }
     // 마스터의 리스너
     class ReceiveListener extends Listener {
 

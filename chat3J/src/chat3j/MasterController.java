@@ -22,6 +22,6 @@ public class MasterController {
 
     // 마스터를 닫는다.
     public void close() {
-
+        master.close();//마스터 노드에 클라이언트와의 연결은 끊고 종료하라는 명령을 한다.
     }
 }

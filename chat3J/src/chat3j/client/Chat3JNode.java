@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class Chat3JNode {
-
     public Logger logger;
 
     private User user;
@@ -398,10 +397,17 @@ public class Chat3JNode {
             }
             else if (obj instanceof LeaveTopicMsg) { // 토픽떠나겠다고 마스터에게 통보한 후 답신받음
                 LeaveTopicMsg msg = (LeaveTopicMsg) obj;
+
                 node.logger.info("RE: Close operation");
 
                 CloseCommand cmd = new CloseCommand(conn, msg);
                 node.commandQueue.add(cmd);
+            }
+            else if (obj instanceof DisconnectToServerMsg) {// 서버가 종료 되었을시 클라이언트는 종료된다.
+                DisconnectToServerMsg msg = (DisconnectToServerMsg)obj;
+
+                node.logger.info("RE: Disconnected from server");
+                actualClose();
             }
             else if (obj instanceof RequestForTopicListMsg) { // 토픽 리스트 요청에 대한 답신받음
                 RequestForTopicListMsg msg = (RequestForTopicListMsg) obj;

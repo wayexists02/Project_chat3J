@@ -24,7 +24,6 @@ public class ClientMain {
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
         while(!exit) {
-
             System.out.println("1. Create Topic");
             System.out.println("2. Enter Topic");
             System.out.println("3. Remove Topic");
@@ -56,6 +55,9 @@ public class ClientMain {
                     Option<Boolean> opt = nodeController.close();
                     opt.waitFor();
                     //System.out.println(opt.message);
+                    exit = true;
+                    break;
+                case 6://새로 추가한 소스 서버가 종료되었을 경우 사용
                     exit = true;
                     break;
                 default:

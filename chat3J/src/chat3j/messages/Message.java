@@ -14,6 +14,7 @@ public class Message {
         endPoint.getKryo().register(TopicCreationMsg.class);
         endPoint.getKryo().register(ReadyForEnterMsg.class);
         endPoint.getKryo().register(RequestForTopicListMsg.class);
+        endPoint.getKryo().register(DisconnectToServerMsg.class);
     }
 
     // 외부 요청에 의한 메시지의 경우, 이 정보는 반드시 메시지와 함께 가야함.
