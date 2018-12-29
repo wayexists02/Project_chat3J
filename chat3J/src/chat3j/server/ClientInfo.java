@@ -11,4 +11,8 @@ public class ClientInfo {
     public int tcp;
     public int udp;
     public Connection conn;
+    public boolean equals(ClientInfo info) {
+        return this.conn == info.conn;//서버와 connection은 항상 1개이다.
+    }
+
 }

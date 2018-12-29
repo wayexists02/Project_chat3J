@@ -15,10 +15,18 @@ public class CloseCommand extends PostCommand {
     public void exec(Chat3JNode node) {
         LeaveTopicMsg response = (LeaveTopicMsg) msg;
 
-        for (String topic : response.topics)
-            node.actualLeaveTopic(topic);
+        if (response.topics != null) {
+            for (String topic : response.topics) {
+                if (!node.actualLeaveTopic(topic)) {
+                    node.logger.error("No given named topic '" + topic + "'.");
+                    node.optionOk(response.optionId, false, "No given named topic + '" + topic + "'.");
+                }
+            }
+        }
 
-        if (response.close)
+        if (response.close) {
             node.actualClose();
+            node.optionOk(response.optionId, true, "Success.");
+        }
     }
 }

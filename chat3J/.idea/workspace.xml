@@ -2,13 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9de428e2-d8dc-4472-8716-98182d7c9ffa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/Chat3J.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/MasterController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CloseCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/RequestForTopicListMsg.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/LeaveTopicTask.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/TopicListTask.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chat3j/messages/RequestForTopicListMsg.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat3J.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chat3J.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/META-INF/chat3J.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/AudioCommunication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/AudioCommunication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/AudioData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/AudioData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode$ReceiveListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode$ReceiveListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher$ConnectionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher$ConnectionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/Command.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/Command.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/ConnectToNewCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/ConnectToNewCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CreateTopicCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CreateTopicCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/DisconnectBetweenClientCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/DisconnectBetweenClientCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PostCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PostCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PublisherCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PublisherCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/RequestTopicCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/RequestTopicCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/exceptions/AudioConnectException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/exceptions/AudioConnectException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/exceptions/ChatException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/exceptions/ChatException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/EnterTopicMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/EnterTopicMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/LeaveTopicMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/LeaveTopicMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/ReadyForEnterMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/ReadyForEnterMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/RequestTopicMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/RequestTopicMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/TopicCreationMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/TopicCreationMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster$ReceiveListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster$ReceiveListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/ClientInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/ClientInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Topic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Topic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/CreateTopicTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/CreateTopicTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/EnterTopicTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/EnterTopicTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/RequestTopicTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/RequestTopicTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/test/AudioTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/test/AudioTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/test/ClientMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/test/ClientMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/test/MasterMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/test/MasterMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/utils/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/utils/Logger.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chat3j/MasterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/MasterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chat3j/NodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/NodeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/messages/LeaveTopicMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/messages/LeaveTopicMsg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/client/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Publisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/client/commands/CreateTopicCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/commands/CreateTopicCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/client/commands/RequestTopicCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/commands/RequestTopicCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/messages/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/ClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/ClientInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chat3j/test/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/test/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/test/MasterMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/test/MasterMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/utils/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/utils/Logger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,23 +78,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-87">
-              <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2232">
-              <caret line="215" lean-forward="true" selection-start-line="215" selection-end-line="215" />
+            <state relative-caret-position="2762">
+              <caret line="405" column="83" selection-start-line="405" selection-start-column="83" selection-end-line="405" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,10 +91,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/Chat3J.java">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/test/ClientMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="22" column="47" lean-forward="true" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+            <state relative-caret-position="664">
+              <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,8 +105,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chat3j/MasterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="408">
+              <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/RequestTopicCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/TopicListCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#300#301#0" expanded="true" />
+                <element signature="e#332#333#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,20 +140,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chat3j/NodeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+            <state relative-caret-position="880">
+              <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1005#1006#0" expanded="true" />
+                <element signature="e#1040#1041#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/test/ClientMain.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/Chat3J.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="34" column="58" lean-forward="true" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
+            <state relative-caret-position="744">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,13 +164,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/options/Option.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="240">
+              <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -106,26 +175,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chat3j/messages/LeaveTopicMsg.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/messages/EnterTopicMsg.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/PublisherCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+              <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,6 +206,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>remove</find>
+      <find>.start</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,15 +223,11 @@
         <option value="$PROJECT_DIR$/src/chat3j/messages/TopicCreationMsg.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/commands/SubscribeCommand.java" />
         <option value="$PROJECT_DIR$/src/chat3j/messages/RequestTopicMsg.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/messages/Message.java" />
         <option value="$PROJECT_DIR$/src/chat3j/server/tasks/Task.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/commands/PublisherCommand.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/commands/Command.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/commands/PostCommand.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/client/commands/RequestTopicCommand.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/client/commands/CreateTopicCommand.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/commands/ConnectBetweenClientCommand.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/client/commands/ConnectToNewCommand.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/commands/DisconnectBetweenClientCommand.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/Data.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/Communication.java" />
@@ -179,23 +239,42 @@
         <option value="$PROJECT_DIR$/src/chat3j/client/AudioCommunication.java" />
         <option value="$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java" />
         <option value="$PROJECT_DIR$/src/chat3j/server/tasks/CreateTopicTask.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/client/Publisher.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java" />
         <option value="$PROJECT_DIR$/src/chat3j/Chat3J.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" />
         <option value="$PROJECT_DIR$/src/chat3j/messages/LeaveTopicMsg.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/test/MasterMain.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/Option.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/options/BooleanOption.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/commands/RequestTopicCommand.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/commands/CreateTopicCommand.java" />
         <option value="$PROJECT_DIR$/src/chat3j/MasterController.java" />
-        <option value="$PROJECT_DIR$/src/chat3j/NodeController.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/messages/Message.java" />
         <option value="$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/commands/ConnectToNewCommand.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/utils/Logger.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/NodeController.java" />
         <option value="$PROJECT_DIR$/src/chat3j/test/ClientMain.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/Publisher.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/options/Option.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/commands/TopicListCommand.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" />
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="29" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="x" value="79" />
+    <option name="y" value="14" />
+    <option name="width" value="1499" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -205,8 +284,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -260,6 +337,13 @@
               <item name="chat3J" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="chat3j" type="462c0819:PsiDirectoryNode" />
+              <item name="options" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat3J" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat3J" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="chat3j" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -288,15 +372,17 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545991723160" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea/libraries/AndroidLibrary.jar!/" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546085383443" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/kryonet-2.21-all.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -310,7 +396,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MasterMain">
+  <component name="RunManager" selected="Application.ClientMain">
     <configuration name="AudioTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chat3j.test.AudioTest" />
       <module name="chat3J" />
@@ -376,8 +462,17 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="29" width="1400" height="1000" extended-state="0" />
+    <frame x="79" y="14" width="1499" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -385,23 +480,23 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.50163937" side_tool="true" weight="0.26119402" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.49836066" visible="true" weight="0.28432837" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.49836066" visible="true" weight="0.2772759" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.3290993" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50074625" side_tool="true" weight="0.3290993" />
-      <window_info anchor="bottom" id="Messages" order="2" weight="0.3290993" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49965253" weight="0.32801822" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.14801946" side_tool="true" visible="true" weight="0.2813212" />
+      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.49965253" weight="0.32801822" />
+      <window_info anchor="bottom" id="Version Control" order="3" sideWeight="0.49965253" weight="0.32915717" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.3290993" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49925372" weight="0.295612" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.3995381" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.85198057" weight="0.2813212" />
+      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49756774" weight="0.39863327" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49965253" weight="0.32915717" />
       <window_info anchor="right" id="Theme Preview" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.3293954" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
@@ -409,31 +504,9 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/chat3j/utils/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#161#162#0" expanded="true" />
-            <element signature="e#190#191#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Topic.java" />
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/FormConnectionMsg.java" />
     <entry file="file://$PROJECT_DIR$/src/chat3j/messages/QuitConnectionMsg.java" />
     <entry file="file://$PROJECT_DIR$/src/chat3j/messages/DisconnectBetweenClientMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/chat3j/test/MasterMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Java/kryonet-2.21/jars/production/onejar/kryonet-2.21-all.jar!/com/esotericsoftware/kryo/Kryo.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="jar://D:/Java/kryonet-2.21/jars/production/onejar/kryonet-2.21-all.jar!/com/esotericsoftware/kryo/Kryo.class" />
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/exceptions/ChatException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -442,89 +515,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/SubscribeCommand.java" />
-    <entry file="file://$PROJECT_DIR$/src/chat3j/test/AudioTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="24" column="74" lean-forward="true" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding>
-            <element signature="e#226#227#0" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/PostCreateTopicCommand.java" />
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/ChangeCommunication.java" />
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/DisconnectBetweenClientCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-          <folding>
-            <element signature="e#254#255#0" expanded="true" />
-            <element signature="e#286#287#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CreateTopicCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#315#316#0" expanded="true" />
-            <element signature="e#347#348#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/ConnectToNewCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/PostCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/RequestTopicCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#333#334#0" expanded="true" />
-            <element signature="e#365#366#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -541,20 +539,6 @@
             <element signature="e#442#443#0" expanded="true" />
             <element signature="e#480#481#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/ReadyForEnterMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/RequestTopicMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -582,13 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/server/ClientInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/AudioCommunication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-87">
@@ -603,16 +580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-159">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -643,16 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Communication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/Data.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -667,16 +624,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Publisher.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/test/AudioTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="414">
+          <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
           <folding>
-            <element signature="e#3329#3330#0" expanded="true" />
-            <element signature="e#3355#3356#0" expanded="true" />
-            <element signature="e#3397#3398#0" expanded="true" />
-            <element signature="e#3423#3424#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/RequestTopicMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/options/BooleanOption.java" />
+    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/ReadyForEnterMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -687,51 +656,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/DisconnectBetweenClientCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+        <state relative-caret-position="120">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CreateTopicCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/LeaveTopicMsg.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/Command.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="90">
+          <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/ClientInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/test/MasterMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/messages/EnterTopicMsg.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+        <state relative-caret-position="231">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/NodeController.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/ConnectToNewCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+        <state relative-caret-position="408">
+          <caret line="19" column="85" selection-start-line="19" selection-start-column="85" selection-end-line="19" selection-end-column="85" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/MasterController.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/RequestForTopicListMsg.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="216">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/utils/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+          <folding>
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#190#191#0" expanded="true" />
+            <element signature="e#330#331#0" expanded="true" />
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#353#354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Java/jdk-11.0.1/lib/src.zip!/java.base/java/lang/ref/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="230" column="31" selection-start-line="230" selection-start-column="31" selection-end-line="230" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-87">
-          <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+        <state relative-caret-position="1296">
+          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Communication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Publisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="984">
+          <caret line="51" column="14" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -740,28 +806,93 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/Chat3J.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="22" column="47" lean-forward="true" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        <state relative-caret-position="744">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/LeaveTopicMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/options/Option.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/test/ClientMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="664">
+          <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/NodeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1005#1006#0" expanded="true" />
+            <element signature="e#1040#1041#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/MasterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/RequestTopicCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/TopicListCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2232">
-          <caret line="215" lean-forward="true" selection-start-line="215" selection-end-line="215" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/test/ClientMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="34" column="58" lean-forward="true" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
+        <state relative-caret-position="2762">
+          <caret line="405" column="83" selection-start-line="405" selection-start-column="83" selection-end-line="405" selection-end-column="83" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

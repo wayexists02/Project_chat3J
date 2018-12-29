@@ -48,7 +48,10 @@ public class Publisher {
         server.start();
 
         // 메인 루프를 실행
-        mainThread = new Thread(() -> run());
+        mainThread = new Thread(() -> {
+            //System.out.println(Thread.currentThread().getName());
+            run();
+        });
         mainThread.start();
 
         logger.info("[PUBLISHTER] Publisher started");
@@ -85,16 +88,14 @@ public class Publisher {
     }
 
     public void close() {
-        for (Connection conn: subscribers) {
-            conn.close();
-        }
-        server.close();
+        destroy();
     }
 
     // 이 토픽에 다른 클라이언트가 들어오면 이 메소드를 통해 그 쿨라이언트와 통신연결
     public void connectTo(String addr, int tcp, int udp) {
+        Client client = new Client();
+
         try {
-            Client client = new Client();
             client.start();
             Message.registerMessage(client);
             client.addListener(new ConnectionListener(this, false));
@@ -108,6 +109,7 @@ public class Publisher {
 
         } catch (IOException exc) {
             exc.printStackTrace();
+            client.close();
         }
     }
 
@@ -138,6 +140,8 @@ public class Publisher {
 
         for (Client clnt : subscribers)
             clnt.close();
+
+        server.stop();
         server.close();
     }
 
