@@ -186,6 +186,12 @@ public class Chat3JMaster {
                 LeaveTopicTask task = new LeaveTopicTask(conn,msg);
                 master.taskQueue.add(task);
             }
+            else if (obj instanceof TopicListTask) {
+                RequestTopicMsg msg = (RequestTopicMsg)obj;
+
+                TopicListTask task = new TopicListTask(conn,msg);
+                master.taskQueue.add(task);
+            }
 
             master.logger.info("-----------------------");
             master.logger.info("");
