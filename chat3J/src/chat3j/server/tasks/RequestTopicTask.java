@@ -35,6 +35,7 @@ public class RequestTopicTask extends Task {
             response.address = new String[topic.getClientList().size()];
             response.tcp = new int[topic.getClientList().size()];
             response.udp = new int[topic.getClientList().size()];
+            response.commType = topic.getCommunicationType();
 
             // 토픽에 있던 기존 인원들에 대한 정보 취득.
             for (int i = 0; i < topic.getClientList().size(); i++) {

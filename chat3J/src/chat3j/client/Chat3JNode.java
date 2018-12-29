@@ -116,10 +116,10 @@ public class Chat3JNode {
     }
 
     // 토픽을 최초로 생성함
-    public Option<Boolean> createTopic(String topic) {
+    public Option<Boolean> createTopic(String topic, Communication.ECommunicationType type) {
         Option<Boolean> option = new Option<>();
 
-        Publisher pub = new Publisher();
+        Publisher pub = new Publisher(type);
         if (!pub.assignPort()) // 토픽에서 메시지를 보내기 위해 서버를 생성하고 포트를 할당
             logger.info("CANNOT assign port");
 
@@ -139,6 +139,12 @@ public class Chat3JNode {
             msg.topic = topic;
             msg.tcp = pub.tcp();
             msg.udp = pub.udp();
+            if (type == Communication.ECommunicationType.CHAT)
+                msg.commType = "Chat";
+            else if (type == Communication.ECommunicationType.VOICE)
+                msg.commType = "Voice";
+            else
+                msg.commType = "Invalid";
 
             // 옵션을 keep 해둔다.
             int id = putOption(option);
@@ -283,9 +289,14 @@ public class Chat3JNode {
 
     // 만약, 다른 토픽에 들어가는 것이라면, 이 함수 호출
     // 해당 토픽의 다른 클라이언트와 통신을 위해 이 클라이언트도 이 토픽에 해당하는 퍼블리셔 생성
-    public void addPublisher(String topic) {
+    public void addPublisher(String topic, String type) {
         // 퍼블리셔 생성
-        Publisher pub = new Publisher();
+        Publisher pub;
+        if (type.equals("Voice"))
+            pub = new Publisher(Communication.ECommunicationType.VOICE);
+        else
+            pub = new Publisher(Communication.ECommunicationType.CHAT);
+
         pub.assignPort();
         publishers.put(topic, pub);
         pub.start();

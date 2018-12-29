@@ -1,6 +1,7 @@
 package chat3j;
 
 import chat3j.client.Chat3JNode;
+import chat3j.client.Communication;
 import chat3j.options.Option;
 import chat3j.utils.Logger;
 
@@ -46,8 +47,18 @@ public class NodeController {
     }
 
     // 토픽을 새로 생성한다.
-    public Option<Boolean> createTopic(final String topic) {
-        return node.createTopic(topic);
+    public Option<Boolean> createTopic(final String topic, final CommunicationType type) {
+        if (type == CommunicationType.VOICE)
+            return node.createTopic(topic, Communication.ECommunicationType.VOICE);
+        else if (type == CommunicationType.CHAT)
+            return node.createTopic(topic, Communication.ECommunicationType.CHAT);
+
+        Option<Boolean> opt = new Option<>();
+        opt.ok = true;
+        opt.data = false;
+        opt.message = "Invalid communication type.";
+
+        return opt;
     }
 
     // 토픽에 입장한다.
@@ -82,5 +93,9 @@ public class NodeController {
         givenMasterInfo = true;
 
         return opt;
+    }
+
+    public enum CommunicationType {
+        VOICE, CHAT;
     }
 }

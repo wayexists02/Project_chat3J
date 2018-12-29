@@ -1,8 +1,11 @@
 package chat3j.client;
 
+import chat3j.client.commands.CommunicationInputCommand;
 import chat3j.client.commands.DisconnectBetweenClientCommand;
 import chat3j.client.commands.PublisherCommand;
+import chat3j.client.data.Data;
 import chat3j.messages.Message;
+import chat3j.messages.VoiceDataMsg;
 import chat3j.utils.Logger;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -29,9 +32,12 @@ public class Publisher {
     private boolean ok; // 퍼블리셔의 메인 루프는 ok=true일때만 돈다.
     private boolean stop; // 퍼블리셔 정지 및 소멸.
 
+    private Communication.ECommunicationType commType;
+    private Communication comm;
+
     private Thread mainThread;
 
-    public Publisher() {
+    public Publisher(Communication.ECommunicationType type) {
         this.subscribers = new LinkedList<>();
         this.commandQueue = new PriorityQueue<>();
         this.server = new Server();
@@ -39,12 +45,23 @@ public class Publisher {
         this.udp = 0;
         this.ok = true;
         this.stop = true; // 일단 true로
+        this.commType = type;
+
+        switch (commType) {
+            case VOICE:
+                comm = new VoiceCommunication(this);
+                break;
+            case CHAT:
+                break;
+            default:
+                break;
+        }
     }
 
     // 퍼블리셔를 시작함. 메인루프를 실행
     public void start() {
         server.addListener(new ConnectionListener(this, true));
-        Message.registerMessage(server);
+        Message.registerMessageForPublisher(server);
         server.start();
 
         // 메인 루프를 실행
@@ -53,6 +70,9 @@ public class Publisher {
             run();
         });
         mainThread.start();
+
+        // 커뮤니케이션 시작.
+        comm.start();
 
         logger.info("[PUBLISHTER] Publisher started");
     }
@@ -85,6 +105,10 @@ public class Publisher {
         for (Connection conn: subscribers) {
             conn.sendUDP(msg);
         }
+    }
+
+    public void communicate(Data data) {
+        comm.writeData(data);
     }
 
     public void close() {
@@ -200,7 +224,12 @@ public class Publisher {
         }
         @Override
         public void received(Connection conn, Object obj) {
+            if (obj instanceof VoiceDataMsg) {
+                VoiceDataMsg msg = (VoiceDataMsg) obj;
 
+                CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);
+                pub.commandQueue.add(cmd);
+            }
         }
     }
 }

@@ -1,37 +1,32 @@
-package chat3j.client;
+package chat3j.client.data;
 
 import com.esotericsoftware.kryo.Kryo;
 
 /**
  * 오디오 데이터에 대한 클래스
  */
-public class AudioData extends Data {
+public class VoiceData extends Data<ByteArray> {
 
-    final private int DEFAULT = 44100;
+    final private static int DEFAULT = 44100;
     // 데이터가 저장되는 Array
-    private byte[] data;
+    //private byte[] data;
     // 데이터가 얼마나 읽었는지를 나타냄
     private int numBytesRead;
 
-    public AudioData() {
+    public VoiceData() {
         numBytesRead = 0;
-        data = new byte[DEFAULT];
+        data.data = new byte[DEFAULT];
     }
 
-    public AudioData(final int SAMPLING_RATE_IN_HZ) {
+    public VoiceData(final int SAMPLING_RATE_IN_HZ) {
         numBytesRead = 0;
-        data = new byte[SAMPLING_RATE_IN_HZ];
-    }
-
-    @Override
-    public byte[] getData() {
-        return data;
+        data.data = new byte[SAMPLING_RATE_IN_HZ];
     }
 
     @Override
     public void register(Kryo kryo) {
         kryo.register(byte[].class);
-        kryo.register(AudioData.class);
+        kryo.register(VoiceData.class);
     }
 
     public int getNumBytesRead() {

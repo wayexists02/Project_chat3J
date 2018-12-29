@@ -36,7 +36,7 @@ public class ClientMain {
                 case 1:
                     System.out.println("Type name of Topic.");
                     input_s = sc.nextLine();
-                    nodeController.createTopic(input_s);
+                    nodeController.createTopic(input_s, NodeController.CommunicationType.VOICE);
                     break;
                 case 2:
                     System.out.println("Type name of Topic.");

@@ -107,12 +107,12 @@ public class Chat3JMaster {
 
 
     // 새로운 토픽을 추가 conn이 방장이됨.
-    public boolean addTopic(String topic, Connection conn, int tcp, int udp) {
+    public boolean addTopic(String topic, String commType, Connection conn, int tcp, int udp) {
         if (topicList.containsKey(topic)) { // 토픽이 이미 있으면 생성실패
             return false;
         }
         else { // 토픽이 없으면 추가하고 토픽에 방장 추가
-            Topic newtopic = new Topic(topic);
+            Topic newtopic = new Topic(topic, commType);
             newtopic.addClient(conn, tcp, udp);
             topicList.put(topic, newtopic);
             return true;
