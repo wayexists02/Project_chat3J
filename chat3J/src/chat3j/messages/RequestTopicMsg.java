@@ -13,7 +13,6 @@ public class RequestTopicMsg extends Message {
     public String[] address;
     public int[] tcp;
     public int[] udp;
-    public String commType; // "Voice", "Chat"
 
     public RequestTopicMsg() {
         topic = null;

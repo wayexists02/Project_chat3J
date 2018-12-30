@@ -16,11 +16,9 @@ public class Topic {
     private String topic;
     private List<ClientInfo> clientList;
     private Logger logger;
-    private String commType; // 보이스? 텍스트?
 
-    public Topic(String topic, String commType) {
+    public Topic(String topic) {
         this.topic = topic;
-        this.commType = commType;
         this.clientList = new LinkedList<>();
         this.logger = Logger.getLogger();
 
@@ -30,11 +28,6 @@ public class Topic {
     // 토픽 이름을 반환
     public String topic() {
         return topic;
-    }
-
-    // 보이스 채팅방인지, 텍스트 채팅방인지 반환.
-    public String getCommunicationType() {
-        return commType;
     }
 
     // 토픽에 새로운 클라이언트를 추가함

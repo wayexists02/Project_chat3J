@@ -1,16 +1,23 @@
 package chat3j.server;
 
-import chat3j.messages.*;
-import chat3j.server.tasks.*;
+import chat3j.messages.Message;
+import chat3j.messages.ReadyForEnterMsg;
+import chat3j.messages.RequestTopicMsg;
+import chat3j.messages.TopicCreationMsg;
+import chat3j.server.tasks.CreateTopicTask;
+import chat3j.server.tasks.EnterTopicTask;
+import chat3j.server.tasks.RequestTopicTask;
+import chat3j.server.tasks.Task;
 import chat3j.utils.Logger;
 import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.FrameworkMessage;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
-import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Chat3JMaster {
 
@@ -33,34 +40,6 @@ public class Chat3JMaster {
         this.ok = true;
     }
 
-    // 마스터 포트를 설정한다.
-    public void setPort(int tcp, int udp) {
-        this.tcp = tcp;
-        this.udp = udp;
-    }
-    // 생성된 토픽 리스트 출력
-    public void list_topic() {
-        Topic cur_topic;
-        Iterator<ClientInfo> cur_clients;
-        //테스트용 코드
-        Iterator<String> keys = topicList.keySet().iterator();
-        logger.info("----Topic List----");
-        while(keys.hasNext()) {
-            String key = keys.next();
-            cur_topic = topicList.get(key);
-            cur_clients = cur_topic.getClientList().iterator();
-            logger.info("Name : "+ key);
-            logger.info("Member : ");
-            while(cur_clients.hasNext()) {
-                ClientInfo cur_client = cur_clients.next();
-                logger.info("IPAddress : "+cur_client.address+", tcp : "+cur_client.tcp+", udp : "+cur_client.udp);
-            }
-        }
-        logger.info("----------------");
-    }
-    public Map<String,Topic> get_topic_list() {
-        return topicList;
-    }
     // 마스터 시작
     public void start() {
         try { // 마스터 소켓 세팅
@@ -93,7 +72,6 @@ public class Chat3JMaster {
             else { // 명령이 있으면 그것을 수행.
                 Task task = taskQueue.poll();
                 task.process(this);
-                list_topic();//현제 생성된 토픽 리스트를 보여준다.
             }
 
             Thread.yield();
@@ -105,40 +83,25 @@ public class Chat3JMaster {
         return topicList.getOrDefault(topic, null);
     }
 
-
     // 새로운 토픽을 추가 conn이 방장이됨.
-    public boolean addTopic(String topic, String commType, Connection conn, int tcp, int udp) {
+    public boolean addTopic(String topic, Connection conn, int tcp, int udp) {
         if (topicList.containsKey(topic)) { // 토픽이 이미 있으면 생성실패
             return false;
         }
         else { // 토픽이 없으면 추가하고 토픽에 방장 추가
-            Topic newtopic = new Topic(topic, commType);
+            Topic newtopic = new Topic(topic);
             newtopic.addClient(conn, tcp, udp);
             topicList.put(topic, newtopic);
             return true;
         }
     }
-    public boolean leaveTopic(String topic, Connection conn) {//특정 연결객체를 가진 클라를 토픽에서 제가한다.(신규)
-        if(topicList.containsKey(topic)) {//토픽에 들어간경우 해당토픽배열에서 삭제
-            Topic cur_topic = topicList.get(topic);
-            List<ClientInfo> clients = cur_topic.getClientList();
 
-
-            ClientInfo cli_info = new ClientInfo();
-            cli_info.conn = conn;
-            for(int i=0;i<clients.size();i++) {
-                if(cli_info.equals(clients.get(i))) {
-                    clients.remove(i);
-                }
-            }
-            if(clients.size()==0) { //모든 인원이 나갔을 경우 토픽을 해쉬맵에서 삭제한다.
-                topicList.remove(topic);
-            }
-            return true;
-        } else {//토픽에 가입하지 않았을경우 실패
-            return false;
-        }
+    // 마스터 포트변경 (미구현)
+    public void setPort(int tcp, int udp) {
+        this.tcp = tcp;
+        this.udp = udp;
     }
+
     // 마스터의 리스너
     class ReceiveListener extends Listener {
 
@@ -150,7 +113,6 @@ public class Chat3JMaster {
 
         @Override
         public void received(Connection conn, Object obj) { // 마스터의 메시지 수신
-            if(obj instanceof FrameworkMessage) return; //토픽관련 메시지 이외에 tcp통신을 유지하기 위한 keepalive메시지를 서버와 계속 교환
             master.logger.info("");
             master.logger.info("----- New Message -----");
             master.logger.info("Sender: " + conn.getRemoteAddressTCP().getHostName());
@@ -178,19 +140,6 @@ public class Chat3JMaster {
 
                 // 받은 메시지를 바탕으로 작업을 만들어서 큐에 넣어줌.
                 EnterTopicTask task = new EnterTopicTask(conn, msg);
-                master.taskQueue.add(task);
-            }
-            else if (obj instanceof LeaveTopicMsg) {
-                LeaveTopicMsg msg = (LeaveTopicMsg) obj;
-
-                // 받은 메시지를 바탕으로 작업을 만들어서 큐에 넣어줌.
-                LeaveTopicTask task = new LeaveTopicTask(conn,msg);
-                master.taskQueue.add(task);
-            }
-            else if (obj instanceof RequestForTopicListMsg) {
-                RequestForTopicListMsg msg = (RequestForTopicListMsg)obj;
-
-                TopicListTask task = new TopicListTask(conn,msg);
                 master.taskQueue.add(task);
             }
 

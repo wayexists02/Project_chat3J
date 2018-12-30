@@ -2,6 +2,7 @@ package chat3j.test;
 
 
 import javax.sound.sampled.*;
+import java.io.ByteArrayOutputStream;
 
 public class AudioTest {
 

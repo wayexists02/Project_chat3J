@@ -1,8 +1,6 @@
 package chat3j.client.commands;
 
 import chat3j.client.Publisher;
-import chat3j.messages.Message;
-import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 미구현

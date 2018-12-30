@@ -9,7 +9,6 @@ public class TopicCreationMsg extends Message {
     public String topic;
     public int tcp;
     public int udp;
-    public String commType; // "Voice", "Chat"
 
     // response
     public boolean success;

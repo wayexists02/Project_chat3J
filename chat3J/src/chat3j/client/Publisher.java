@@ -1,11 +1,8 @@
 package chat3j.client;
 
-import chat3j.client.commands.CommunicationInputCommand;
 import chat3j.client.commands.DisconnectBetweenClientCommand;
 import chat3j.client.commands.PublisherCommand;
-import chat3j.client.data.Data;
 import chat3j.messages.Message;
-import chat3j.messages.VoiceDataMsg;
 import chat3j.utils.Logger;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -32,12 +29,9 @@ public class Publisher {
     private boolean ok; // 퍼블리셔의 메인 루프는 ok=true일때만 돈다.
     private boolean stop; // 퍼블리셔 정지 및 소멸.
 
-    private Communication.ECommunicationType commType;
-    private Communication comm;
-
     private Thread mainThread;
 
-    public Publisher(Communication.ECommunicationType type) {
+    public Publisher() {
         this.subscribers = new LinkedList<>();
         this.commandQueue = new PriorityQueue<>();
         this.server = new Server();
@@ -45,34 +39,17 @@ public class Publisher {
         this.udp = 0;
         this.ok = true;
         this.stop = true; // 일단 true로
-        this.commType = type;
-
-        switch (commType) {
-            case VOICE:
-                comm = new VoiceCommunication(this);
-                break;
-            case CHAT:
-                break;
-            default:
-                break;
-        }
     }
 
     // 퍼블리셔를 시작함. 메인루프를 실행
     public void start() {
         server.addListener(new ConnectionListener(this, true));
-        Message.registerMessageForPublisher(server);
+        Message.registerMessage(server);
         server.start();
 
         // 메인 루프를 실행
-        mainThread = new Thread(() -> {
-            //System.out.println(Thread.currentThread().getName());
-            run();
-        });
+        mainThread = new Thread(() -> run());
         mainThread.start();
-
-        // 커뮤니케이션 시작.
-        comm.start();
 
         logger.info("[PUBLISHTER] Publisher started");
     }
@@ -101,25 +78,14 @@ public class Publisher {
         stop = true;
     }
 
-    public void broadcast(Message msg) {
-        for (Connection conn: subscribers) {
-            conn.sendUDP(msg);
-        }
-    }
+    public void publish() {
 
-    public void communicate(Data data) {
-        comm.writeData(data);
-    }
-
-    public void close() {
-        destroy();
     }
 
     // 이 토픽에 다른 클라이언트가 들어오면 이 메소드를 통해 그 쿨라이언트와 통신연결
     public void connectTo(String addr, int tcp, int udp) {
-        Client client = new Client();
-
         try {
+            Client client = new Client();
             client.start();
             Message.registerMessage(client);
             client.addListener(new ConnectionListener(this, false));
@@ -133,7 +99,6 @@ public class Publisher {
 
         } catch (IOException exc) {
             exc.printStackTrace();
-            client.close();
         }
     }
 
@@ -164,8 +129,6 @@ public class Publisher {
 
         for (Client clnt : subscribers)
             clnt.close();
-
-        server.stop();
         server.close();
     }
 
@@ -224,12 +187,7 @@ public class Publisher {
         }
         @Override
         public void received(Connection conn, Object obj) {
-            if (obj instanceof VoiceDataMsg) {
-                VoiceDataMsg msg = (VoiceDataMsg) obj;
 
-                CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);
-                pub.commandQueue.add(cmd);
-            }
         }
     }
 }
