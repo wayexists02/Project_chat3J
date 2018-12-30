@@ -15,12 +15,18 @@ public class VoiceData extends Data<ByteArray> {
 
     public VoiceData() {
         numBytesRead = 0;
-        data.data = new byte[DEFAULT];
+        ByteArray array = new ByteArray();
+        array.data = new byte[DEFAULT];
+        setData(array);
+        //data.data = new byte[DEFAULT];
     }
 
     public VoiceData(final int SAMPLING_RATE_IN_HZ) {
         numBytesRead = 0;
-        data.data = new byte[SAMPLING_RATE_IN_HZ];
+        ByteArray array = new ByteArray();
+        array.data = new byte[SAMPLING_RATE_IN_HZ];
+        setData(array);
+        //data.data = new byte[SAMPLING_RATE_IN_HZ];
     }
 
     @Override
