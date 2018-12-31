@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>net.Chat3J</groupId>
+  <artifactId>chat3j</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  <!-- 위에는 건들필요 없음 -->
+
+
+  <repositories>
+    <!-- 로컬 리포지토리 -->
+    <repository>
+      <id>in-project</id>
+      <name>custom jars</name>
+      <url>file://${project.basedir}/lib</url>
+
+    </repository>
+    <!-- kryonet 리포지토리 -->
+    <repository>
+      <id>clojars</id>
+      <url>http://clojars.org/repo/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <!--안드로이드 라이브러리 종속성 추가-->
+    <dependency>
+      <groupId>android</groupId>
+      <artifactId>AndroidLibrary</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <!--로컬라이브러리 만들경우 여기에 추가-->
+    <!--                               -->
+    <!--                               -->
+    <!--                               -->
+    <!--                               -->
+    <!--kryonet 종속성 추가-->
+    <dependency>
+      <groupId>kryonet</groupId>
+      <artifactId>kryonet-all</artifactId>
+      <version>2.21</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.5.4</version>
+        <executions>
+
+          <!--서버 테스트용 jar 파일-->
+          <execution>
+            <id>server-for-test</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/production</outputDirectory>
+              <archive>
+                <manifest>
+                  <mainClass>chat3j.test.MasterMain</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <finalName>app_server_test</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+          </execution>
+          <!--                         -->
+
+          <!--클라이언트 테스트용 jar 파일-->
+          <execution>
+            <id>client-for-test</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/production</outputDirectory>
+              <archive>
+                <manifest>
+                  <mainClass>chat3j.test.ClientMain</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <finalName>app_client_test</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+          </execution>
+          <!--                        -->
+
+          <!-- 이곳에 클라우드에 올릴 서버와 라이브러리용 jar파일 안드로이드용 클라이언트 프로세스 생성-->
+          <!--                                                                               -->
+          <!--                                                                               -->
+          <!--                                                                               -->
+          <!--                                                                               -->
+          <!--                                                                               -->
+          <!--                                                                               -->
+
+        </executions>
+      </plugin>
+    </plugins>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+
+
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
