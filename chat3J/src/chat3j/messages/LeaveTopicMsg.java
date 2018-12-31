@@ -7,10 +7,18 @@ package chat3j.messages;
  */
 public class LeaveTopicMsg extends Message {
 
+    /** request **/
+
     // 이 클라이언트가 들어가 있는 토픽의 리스트
     public String[] topics;
+    public boolean close;
+
+    /** response **/
+    public boolean ok;
 
     public LeaveTopicMsg() {
-
+        topics = null;
+        close = false;
+        ok = false;
     }
 }

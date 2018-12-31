@@ -2,7 +2,6 @@ package chat3j.server.tasks;
 
 import chat3j.messages.TopicCreationMsg;
 import chat3j.server.Chat3JMaster;
-import chat3j.server.Topic;
 import com.esotericsoftware.kryonet.Connection;
 
 /**
@@ -19,7 +18,7 @@ public class CreateTopicTask extends Task {
         TopicCreationMsg response = (TopicCreationMsg) msg;
 
         // 토픽을 추가하려고 시도해봄
-        if (master.addTopic(response.topic, conn, response.tcp, response.udp)) // 토픽이 성공적으로 추가됨
+        if (master.addTopic(response.topic, response.commType, conn, response.tcp, response.udp)) // 토픽이 성공적으로 추가됨
             response.success = true;
         else // 토픽이 이미 있어서 추가가 불가능
             response.success = false;

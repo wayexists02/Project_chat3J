@@ -1,17 +1,16 @@
 package chat3j.client;
 
+import chat3j.options.Option;
 import chat3j.client.commands.*;
 import chat3j.messages.*;
 import chat3j.utils.Logger;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.FrameworkMessage;
 import com.esotericsoftware.kryonet.Listener;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class Chat3JNode {
 
@@ -23,11 +22,20 @@ public class Chat3JNode {
     // 하나의 토픽 당 1개의 퍼블리셔가 있고 퍼블리셔를 이용해서 토픽 내에서 다른 클라이언트와 통신
     private Map<String, Publisher> publishers;
 
+    // option list. 어떤 연산이 모두 수행됬음을 알리기 위한 옵션 객체 배열
+    private Map<Integer, Option> optionList;
+    // 옵션 리스트의 키가 될 id.
+    public int optionId;
+
+    // 마스터와 직접 통신하는 소켓.
     private Client clientToMaster;
 
     // 마스터와 통신할 소켓 포트
     private int tcp = 10321;
     private int udp = 10322;
+
+    // 마스터의 주소
+    private String address;
 
     //메인 루프는 ok=true 이면 돈다.
     private boolean ok;
@@ -42,6 +50,9 @@ public class Chat3JNode {
         this.user = new User(name);
         this.publishers = new HashMap<>();
 
+        this.optionList = new HashMap<>();
+        this.optionId = 0;
+
         this.clientToMaster = new Client();
         this.logger = Logger.getLogger();
 
@@ -50,34 +61,47 @@ public class Chat3JNode {
         this.ok = true;
     }
 
-    public void start() {
+    // 노드를 시작한다
+    public Option<Boolean> start() {
+        Option<Boolean> option = new Option<>();
+
         try { // 마스터와 통신할 클라이언트 소켓 세팅
             clientToMaster.start();
             logger.info("Node was started...");
 
             Message.registerMessage(clientToMaster);
 
-            clientToMaster.connect(10000, "127.0.0.1", tcp, udp);
+            clientToMaster.connect(10000, address, tcp, udp);
             logger.info("Connected to master.");
 
             clientToMaster.addListener(new ReceiveListener(this));
 
+            // 옵션 업데이트
+            option.data = true;
+            option.message = "Success.";
+
         } catch (IOException exc) {
             exc.printStackTrace();
             clientToMaster.close();
+
+            option.data = false;
+            option.message = "Cannot connect to master.";
         }
 
+        option.ok = true;
+
         // 메인 루프를 다른 스레드에서 돌림
-        mainThread = new Thread(() -> run());
+        mainThread = new Thread(() -> {
+            //System.out.println(Thread.currentThread().getName());
+            run();
+        });
         mainThread.start();
+
+        return option;
     }
 
     // 메인 루프
     public void run() {
-
-        /// DEBUG ///
-        createTopic("A"); // 작동확인을 위해 추가함.
-        /////////////
 
         while (ok) {
             checkCommand(); // 작업이 작업 큐에 있으면 수행.
@@ -85,31 +109,28 @@ public class Chat3JNode {
         }
     }
 
-    // 미구현. 외부 입력 받기 위한 메소드
-    public void requestTopicCreation() {
-
-    }
-    // 미구현. 외부 입력 받기 위한 메소드
-    public void requestClose() {
-
-    }
-
     // 새로운 사람이 토픽에 들어오면 그 사람의 정보를 마스터로부터 얻어서 연결함.
     public void connectTo(String topic, String addr, int tcp, int udp) {
         Publisher pub = publishers.get(topic);
-        pub.connectTo(addr, tcp, udp);
+        new Thread(() -> pub.connectTo(addr, tcp, udp)).start();
     }
 
     // 토픽을 최초로 생성함
-    public void createTopic(String topic) {
-        Publisher pub = new Publisher();
-        pub.assignPort(); // 토픽에서 메시지를 보내기 위해 서버를 생성하고 포트를 할당
+    public Option<Boolean> createTopic(String topic, Communication.ECommunicationType type) {
+        Option<Boolean> option = new Option<>();
+
+        Publisher pub = new Publisher(type);
+        if (!pub.assignPort()) // 토픽에서 메시지를 보내기 위해 서버를 생성하고 포트를 할당
+            logger.info("CANNOT assign port");
 
         // 만약, 중복된 토픽을 생성하는 것이라면, 에러.
         if (publishers.containsKey(topic)) {
             logger.error("ERROR: Topic '" + topic + "' already exists!");
             pub.destroy();
-            return;
+
+            option.ok = true;
+            option.data = false;
+            option.message = "The topic already exists.";
         }
         else { // 중복되지 않았으면, 토픽을 추가하고 마스터에게 토픽을 생성했다는 메시지 보냄.
             publishers.put(topic, pub);
@@ -118,34 +139,170 @@ public class Chat3JNode {
             msg.topic = topic;
             msg.tcp = pub.tcp();
             msg.udp = pub.udp();
+            if (type == Communication.ECommunicationType.CHAT)
+                msg.commType = "Chat";
+            else if (type == Communication.ECommunicationType.VOICE)
+                msg.commType = "Voice";
+            else
+                msg.commType = "Invalid";
+
+            // 옵션을 keep 해둔다.
+            int id = putOption(option);
+            msg.optionId = id;
 
             clientToMaster.sendTCP(msg);
         }
 
+        return option;
     }
 
-    // 미구현. 닫기옵션
-    public void close() {
+    // 노드를 닫는다. 연결 모두종료
+    public Option<Boolean> close() {
+        Option<Boolean> option = new Option<>();
+
+        // 종료 의사를 마스터에게 보냄
         LeaveTopicMsg msg = new LeaveTopicMsg();
-        msg.topics = new String[publishers.size()];
+        if (publishers.size() > 0)
+            msg.topics = new String[publishers.size()];
+        msg.close = true; // 아예 연결을 끊겠다는 의미
         int i = 0;
 
+        // 모든 토픽에서 나가겠다는 의사 전송
         for (String topic : publishers.keySet()) {
             msg.topics[i] = topic;
             i += 1;
         }
 
+        int id = putOption(option);
+        msg.optionId = id;
+
         clientToMaster.sendTCP(msg);
+
+        return option;
+    }
+
+    // 하나의 토픽에서 나간다. 해당 퍼블리셔만 종료
+    public Option<Boolean> leaveFromTopic(String topic) {
+        Option<Boolean> option = new Option<>();
+
+        // 어떤 토픽에서 나가겠다는 메시지 전송
+        LeaveTopicMsg msg = new LeaveTopicMsg();
+        msg.topics = new String[1];
+        msg.topics[0] = topic;
+        msg.close = false;
+        msg.optionId = putOption(option);
+        clientToMaster.sendTCP(msg);
+
+
+        return option;
+    }
+
+    // 마스터의 IP주소 입력받음 start 전에 실행되어야함
+    public Option<Boolean> setMasterAddress(String addr) {
+        Option<Boolean> option = new Option<>();
+
+        if (clientToMaster.isConnected()) {
+            option.ok = true;
+            option.data = false;
+            option.message = "This node is already connected to master.";
+        }
+        else {
+            this.address = addr;
+            option.ok = true;
+            option.data = true;
+            option.message = "Success.";
+        }
+
+        return option;
+    }
+
+    // 마스터의 포트번호 입력받음 start 전에 실행되어야함
+    public Option<Boolean> setMasterPort(int tcp, int udp) {
+        Option<Boolean> option = new Option<>();
+
+        if (clientToMaster.isConnected()) {
+            option.ok = true;
+            option.data = false;
+            option.message = "This node is already connected to master.";
+        }
+        else {
+            this.tcp = tcp;
+            this.udp = udp;
+            option.ok = true;
+            option.data = true;
+            option.message = "Success.";
+        }
+
+        return option;
+    }
+
+    // 마스터에서 종료 처리를 모두 마치면, 비로소 노드를 최종적으로 종료함
+    public void actualClose() {
+        // 모든 퍼블리셔 종료
+        for (Publisher pub: publishers.values()) {
+            pub.close();
+        }
+
+        // 퍼블리셔 리스트 클리어
+        publishers.clear();
+        // 마스터와 연결 종료
+        clientToMaster.stop();
+        clientToMaster.close();
+
+        ok = false;
+    }
+
+    // 마스터에서 토픽 exit 과정을 모두 마치면 비로소 해당 퍼블리셔 제거.
+    public boolean actualLeaveTopic(String topic) {
+        if (!publishers.containsKey(topic))
+            return false;
+
+        publishers.get(topic).close();
+        publishers.remove(topic);
+
+        return true;
+    }
+
+    // 새로운 토픽에 들어가기 위한 함수(추가된 부분)
+    public Option<Boolean> enterTopic(String topic) {
+        Option<Boolean> option = new Option<>();
+
+        RequestTopicMsg msg = new RequestTopicMsg();
+        msg.topic = topic;
+        msg.optionId = putOption(option);
+
+        clientToMaster.sendTCP(msg);
+
+
+        return option;
+    }
+
+    public Option<List<String>> requestTopicList() {
+        Option<List<String>> option = new Option<>();
+        option.data = new LinkedList<>();
+
+        RequestForTopicListMsg msg = new RequestForTopicListMsg();
+        msg.optionId = putOption(option);
+        clientToMaster.sendTCP(msg);
+
+        return option;
     }
 
     // 만약, 다른 토픽에 들어가는 것이라면, 이 함수 호출
     // 해당 토픽의 다른 클라이언트와 통신을 위해 이 클라이언트도 이 토픽에 해당하는 퍼블리셔 생성
-    public void addPublisher(String topic) {
-        Publisher pub = new Publisher();
+    public void addPublisher(String topic, String type) {
+        // 퍼블리셔 생성
+        Publisher pub;
+        if (type.equals("Voice"))
+            pub = new Publisher(Communication.ECommunicationType.VOICE);
+        else
+            pub = new Publisher(Communication.ECommunicationType.CHAT);
+
         pub.assignPort();
         publishers.put(topic, pub);
         pub.start();
 
+        // 마스터에게 나도 퍼블리셔가 준비되었으니 해당 퍼블리셔의 다른 노드들과의 연결 중계 요청
         ReadyForEnterMsg msg = new ReadyForEnterMsg();
         msg.topic = topic;
         msg.tcp = pub.tcp();
@@ -155,7 +312,7 @@ public class Chat3JNode {
     }
 
     // 마스터로부터 해당 이름을 가진 토픽을 최초로 생성했다는 승인을 받았는지 검사.
-    public void approveTopic(String topic, boolean approved) {
+    public boolean approveTopic(String topic, boolean approved) {
         Publisher pub = publishers.getOrDefault(topic, null);
 
         if (!approved) { // 승인을 받지 못했으면
@@ -164,13 +321,11 @@ public class Chat3JNode {
                 publishers.remove(topic);
             }
 
-            //debug 작동 확인을 위해 추가해놓은 것
-            RequestTopicMsg msg = new RequestTopicMsg();
-            msg.topic = "A";
-            clientToMaster.sendTCP(msg);
+            return false;
         }
         else { // 승인을 받았으면 퍼블리셔를 작동시킨다
             pub.start();
+            return true;
         }
     }
 
@@ -185,6 +340,33 @@ public class Chat3JNode {
         }
     }
 
+    // 연산을 마쳤다는 것을 알림 옵션 객체 업데이트
+    public <T> void optionOk(int id, T data, String msg) {
+        Option<T> option = optionList.get(id);
+        option.ok = true;
+        option.data = data;
+        option.message = msg;
+    }
+
+    // 옵션을 전역변수 맵에 저장함. 옵션은 나중에 업데이트 하기 위해 저장함.
+    private <T> int putOption(Option<T> opt) {
+        int id;
+        synchronized (this) {
+            // option id는 스레드 안전하게 변경
+            if (optionId == Integer.MAX_VALUE)
+                optionId = Integer.MIN_VALUE;
+            else
+                optionId += 1;
+        }
+
+        if (!optionList.containsKey(optionId))
+            optionList.put(optionId, opt);
+
+        id = optionId;
+
+        return id;
+    }
+
     // 클라이언트 내에서 생성되는 connection을 위한 리스너
     class ReceiveListener extends Listener {
 
@@ -196,6 +378,7 @@ public class Chat3JNode {
 
         @Override
         public void received(Connection conn, Object obj) { // 마스터로부터 메시지 수신
+            if(obj instanceof FrameworkMessage) return;//tcp통신 유지를 위해 keepalive메시지를 계속 교환
             node.logger.info("");
             node.logger.info("----- New Message -----");
 
@@ -223,6 +406,20 @@ public class Chat3JNode {
 
                 // 작업 큐에 작업을 생성.
                 ConnectToNewCommand cmd = new ConnectToNewCommand(conn, msg);
+                node.commandQueue.add(cmd);
+            }
+            else if (obj instanceof LeaveTopicMsg) { // 토픽떠나겠다고 마스터에게 통보한 후 답신받음
+                LeaveTopicMsg msg = (LeaveTopicMsg) obj;
+                node.logger.info("RE: Close operation");
+
+                CloseCommand cmd = new CloseCommand(conn, msg);
+                node.commandQueue.add(cmd);
+            }
+            else if (obj instanceof RequestForTopicListMsg) { // 토픽 리스트 요청에 대한 답신받음
+                RequestForTopicListMsg msg = (RequestForTopicListMsg) obj;
+                node.logger.info("RE: Request for topic list");
+
+                TopicListCommand cmd = new TopicListCommand(conn, msg);
                 node.commandQueue.add(cmd);
             }
 

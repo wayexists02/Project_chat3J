@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="chat3J:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/chat3J_jar</output-path>
+    <root id="archive" name="chat3J.jar">
+      <element id="module-output" name="chat3J" />
+      <element id="extracted-dir" path="C:/Java/kryonet-2.21/jars/production/onejar/kryonet-2.21-all.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/libraries/AndroidLibrary.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

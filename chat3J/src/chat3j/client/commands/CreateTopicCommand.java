@@ -17,6 +17,11 @@ public class CreateTopicCommand extends PostCommand {
     @Override
     public void exec(Chat3JNode node) {
         TopicCreationMsg response = (TopicCreationMsg) msg;
-        node.approveTopic(response.topic, response.success); // 토픽생성 승인여부 확인
+
+        // 토픽 승인여부 확인 후 옵션 업데이트
+        if (node.approveTopic(response.topic, response.success))
+            node.optionOk(response.optionId, true, "Success.");
+        else
+            node.optionOk(response.optionId, false, "Failed.");
     }
 }
