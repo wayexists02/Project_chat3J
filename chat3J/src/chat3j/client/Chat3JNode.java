@@ -131,8 +131,7 @@ public class Chat3JNode {
             option.ok = true;
             option.data = false;
             option.message = "The topic already exists.";
-        }
-        else { // 중복되지 않았으면, 토픽을 추가하고 마스터에게 토픽을 생성했다는 메시지 보냄.
+        } else { // 중복되지 않았으면, 토픽을 추가하고 마스터에게 토픽을 생성했다는 메시지 보냄.
             publishers.put(topic, pub);
 
             TopicCreationMsg msg = new TopicCreationMsg();
@@ -205,8 +204,7 @@ public class Chat3JNode {
             option.ok = true;
             option.data = false;
             option.message = "This node is already connected to master.";
-        }
-        else {
+        } else {
             this.address = addr;
             option.ok = true;
             option.data = true;
@@ -224,8 +222,7 @@ public class Chat3JNode {
             option.ok = true;
             option.data = false;
             option.message = "This node is already connected to master.";
-        }
-        else {
+        } else {
             this.tcp = tcp;
             this.udp = udp;
             option.ok = true;
@@ -239,7 +236,7 @@ public class Chat3JNode {
     // 마스터에서 종료 처리를 모두 마치면, 비로소 노드를 최종적으로 종료함
     public void actualClose() {
         // 모든 퍼블리셔 종료
-        for (Publisher pub: publishers.values()) {
+        for (Publisher pub : publishers.values()) {
             pub.close();
         }
 
@@ -322,11 +319,19 @@ public class Chat3JNode {
             }
 
             return false;
-        }
-        else { // 승인을 받았으면 퍼블리셔를 작동시킨다
+        } else { // 승인을 받았으면 퍼블리셔를 작동시킨다
             pub.start();
             return true;
         }
+    }
+
+    // 토픽에 대한 퍼블리셔의 상태를 체크함
+    public boolean checkPublisher(String topic) {
+        if (!publishers.containsKey(topic)) {
+            return false;
+        }
+        Publisher publisher = publishers.get(topic);
+        return !publisher.getStop();
     }
 
     // 작업 큐에 명령이 들어와있는지 확인하고 있으면 수행.
@@ -378,7 +383,7 @@ public class Chat3JNode {
 
         @Override
         public void received(Connection conn, Object obj) { // 마스터로부터 메시지 수신
-            if(obj instanceof FrameworkMessage) return;//tcp통신 유지를 위해 keepalive메시지를 계속 교환
+            if (obj instanceof FrameworkMessage) return;//tcp통신 유지를 위해 keepalive메시지를 계속 교환
             node.logger.info("");
             node.logger.info("----- New Message -----");
 
@@ -390,8 +395,7 @@ public class Chat3JNode {
                 // 작업 큐에 작업을 생성.
                 CreateTopicCommand cmd = new CreateTopicCommand(conn, msg);
                 node.commandQueue.add(cmd);
-            }
-            else if (obj instanceof RequestTopicMsg) { // 토픽에 입장하겠다는 것에 대한 답신을 받음.
+            } else if (obj instanceof RequestTopicMsg) { // 토픽에 입장하겠다는 것에 대한 답신을 받음.
                 RequestTopicMsg msg = (RequestTopicMsg) obj;
                 node.logger.info("RE: Request connection");
                 node.logger.info("Found: " + msg.found);
@@ -399,23 +403,20 @@ public class Chat3JNode {
                 // 작업 큐에 작업을 생성.
                 RequestTopicCommand cmd = new RequestTopicCommand(conn, msg);
                 node.commandQueue.add(cmd);
-            }
-            else if (obj instanceof EnterTopicMsg) { // 다른 클라이언트가 토픽에 입장했다는 메시지를 받음.
+            } else if (obj instanceof EnterTopicMsg) { // 다른 클라이언트가 토픽에 입장했다는 메시지를 받음.
                 EnterTopicMsg msg = (EnterTopicMsg) obj;
                 node.logger.info("RE: new client entered");
 
                 // 작업 큐에 작업을 생성.
                 ConnectToNewCommand cmd = new ConnectToNewCommand(conn, msg);
                 node.commandQueue.add(cmd);
-            }
-            else if (obj instanceof LeaveTopicMsg) { // 토픽떠나겠다고 마스터에게 통보한 후 답신받음
+            } else if (obj instanceof LeaveTopicMsg) { // 토픽떠나겠다고 마스터에게 통보한 후 답신받음
                 LeaveTopicMsg msg = (LeaveTopicMsg) obj;
                 node.logger.info("RE: Close operation");
 
                 CloseCommand cmd = new CloseCommand(conn, msg);
                 node.commandQueue.add(cmd);
-            }
-            else if (obj instanceof RequestForTopicListMsg) { // 토픽 리스트 요청에 대한 답신받음
+            } else if (obj instanceof RequestForTopicListMsg) { // 토픽 리스트 요청에 대한 답신받음
                 RequestForTopicListMsg msg = (RequestForTopicListMsg) obj;
                 node.logger.info("RE: Request for topic list");
 

@@ -177,10 +177,12 @@ public class Publisher {
     public int tcp() {
         return tcp;
     }
+
     //퍼블리셔의 udp 포트
     public int udp() {
         return udp;
     }
+
     //퍼블리셔 소멸
     public void destroy() {
         ok = false;
@@ -216,7 +218,8 @@ public class Publisher {
                 tcp = port1;
                 udp = port2;
                 success = true;
-            } catch (IOException exc) {}
+            } catch (IOException exc) {
+            }
 
         } while (!success && (System.currentTimeMillis() - time1) < 10000); // 10초동안 빈 포트 못찾으면 리턴
 
@@ -224,6 +227,10 @@ public class Publisher {
         logger.info("[PUBLISHER] UDP: " + udp);
 
         return success;
+    }
+
+    public boolean getStop() {
+        return stop;
     }
 
     // 퍼블리셔 내에서 생성되는 모든 소켓을 위한 리스너
@@ -241,6 +248,7 @@ public class Publisher {
         public void connected(Connection conn) { // 누가 나한테 연결했어
 
         }
+
         @Override
         public void disconnected(Connection conn) { // 누군가 연결을 끊었다.
             if (!isServer) { // 만약, 나의 client 객체들중 하나가 끊겼다면 검사해서 제거해야함.
@@ -255,10 +263,11 @@ public class Publisher {
                 logger.info("[PUBLISHER] NODE disconnected.");
             }
         }
+
         @Override
         public void received(Connection conn, Object obj) {
             if (obj instanceof VoiceDataMsg) {
-                logger.info("[PUBLISHER] VOICE received");
+                //logger.info("[PUBLISHER] VOICE received");
                 VoiceDataMsg msg = (VoiceDataMsg) obj;
 
                 CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);

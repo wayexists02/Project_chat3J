@@ -5,6 +5,7 @@ import chat3j.client.Communication;
 import chat3j.options.Option;
 import chat3j.utils.Logger;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -62,7 +63,9 @@ public class NodeController {
     }
 
     // 토픽에 입장한다.
-    public Option<Boolean> enterTopic(final String topic) { return node.enterTopic(topic); }
+    public Option<Boolean> enterTopic(final String topic) {
+        return node.enterTopic(topic);
+    }
 
     // 토픽을 떠난다.
     public Option<Boolean> exitFromTopic(final String topic) {
@@ -95,7 +98,51 @@ public class NodeController {
         return opt;
     }
 
+    // Topic 으로 작업 처리를 확인 -> 30초동안 완료가 안됬으면 실패
+    public boolean checkTopic(TaskObject taskObject) {
+        boolean loop = true;
+        long runningTime = new Date().getTime();
+        while (loop) {
+            if (taskObject.getTYPE() == Task_TYPE.CREATE || taskObject.getTYPE() == Task_TYPE.ENTER) {
+                System.out.println("IN LOOP");
+                if (node.checkPublisher(taskObject.getTOPIC()))
+                    return true;
+            } else if (taskObject.getTYPE() == Task_TYPE.LEAVE) {
+                if (!node.checkPublisher(taskObject.getTOPIC()))
+                    return true;
+            } else {
+                return false;
+            }
+            // 30초동안 loop를 돌면 종료
+            if (new Date().getTime() >= runningTime + 1000 * 30)
+                loop = false;
+        }
+        return false;
+    }
+
     public enum CommunicationType {
         VOICE, CHAT;
+    }
+
+    public static class TaskObject {
+        private Task_TYPE TYPE;
+        private String TOPIC;
+
+        public TaskObject(Task_TYPE TYPE, String TOPIC) {
+            this.TYPE = TYPE;
+            this.TOPIC = TOPIC;
+        }
+
+        public String getTOPIC() {
+            return TOPIC;
+        }
+
+        public Task_TYPE getTYPE() {
+            return TYPE;
+        }
+    }
+
+    public enum Task_TYPE {
+        CREATE, ENTER, LEAVE;
     }
 }
