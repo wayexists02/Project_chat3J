@@ -5,6 +5,7 @@ import chat3j.client.commands.DisconnectBetweenClientCommand;
 import chat3j.client.commands.PublisherCommand;
 import chat3j.client.data.Data;
 import chat3j.messages.Message;
+import chat3j.messages.TextDataMsg;
 import chat3j.messages.VoiceDataMsg;
 import chat3j.utils.Logger;
 import com.esotericsoftware.kryonet.Client;
@@ -54,8 +55,10 @@ public class Publisher {
                 comm = new VoiceCommunication(this);
                 break;
             case CHAT:
+                comm = new ChatCommunication(this);
                 break;
             default:
+                logger.error("Invalid communication type.");
                 break;
         }
     }
@@ -88,7 +91,7 @@ public class Publisher {
             // 작업 큐에 작업이 있으면 수행 없으면 패스.
             // 작업이 너무 많으면 3개만 수행.
             while (!commandQueue.isEmpty() && count > 0) {
-                synchronized (this) {
+                synchronized (commandQueue) {
                     PublisherCommand cmd = commandQueue.poll();
                     cmd.exec(this);
                 }
@@ -102,10 +105,11 @@ public class Publisher {
         stop = true;
     }
 
+    // 이 퍼블리셔가 있는 토픽 내의 모든 인원에게 메시지를 브로드캐스트
     public void broadcast(Message msg) {
         //logger.info("BROADCAST to " + subscribers.size() + " subscribers.");
 
-        synchronized (this) {
+        synchronized (Integer.class) {
             server.sendToAllUDP(msg);
 
             count += 1;
@@ -117,8 +121,12 @@ public class Publisher {
         }
     }
 
+    public Communication.ECommunicationType getCommType() {
+        return this.commType;
+    }
+
     public void communicate(Data data) {
-        synchronized (this) {
+        synchronized (comm) {
             comm.writeData(data);
         }
     }
@@ -145,7 +153,7 @@ public class Publisher {
             //logger.info("TCP: " + tcp + ", UDP: " + udp);
             client.connect(10000, addr, tcp, udp);
 
-            synchronized (this) {
+            synchronized (subscribers) {
                 subscribers.add(th);
             }
 
@@ -166,7 +174,7 @@ public class Publisher {
             if (!th.getClient().isConnected()) {
                 th.close();
 
-                synchronized (this) {
+                synchronized (subscribers) {
                     subscribers.remove(th);
                 }
             }
@@ -255,7 +263,7 @@ public class Publisher {
                 logger.info("[SUBSCRIBER] NODE disconnected.");
                 DisconnectBetweenClientCommand cmd = new DisconnectBetweenClientCommand();
 
-                synchronized (Publisher.this) {
+                synchronized (pub.commandQueue) {
                     pub.commandQueue.add(cmd);
                 }
             }
@@ -272,7 +280,16 @@ public class Publisher {
 
                 CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);
 
-                synchronized (Publisher.this) {
+                synchronized (pub.commandQueue) {
+                    pub.commandQueue.add(cmd);
+                }
+            }
+            else if (obj instanceof TextDataMsg) {
+                TextDataMsg msg = (TextDataMsg) obj;
+
+                CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);
+
+                synchronized (pub.commandQueue) {
                     pub.commandQueue.add(cmd);
                 }
             }

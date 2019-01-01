@@ -20,7 +20,9 @@ public class Message {
     public static void registerMessageForPublisher(EndPoint endPoint) {
         registerMessage(endPoint);
         endPoint.getKryo().register(byte[].class);
+        endPoint.getKryo().register(CommunicationDataMsg.class);
         endPoint.getKryo().register(VoiceDataMsg.class);
+        endPoint.getKryo().register(TextDataMsg.class);
     }
 
     // 외부 요청에 의한 메시지의 경우, 이 정보는 반드시 메시지와 함께 가야함.

@@ -119,6 +119,24 @@ public class Chat3JNode {
     public Option<Boolean> createTopic(String topic, Communication.ECommunicationType type) {
         Option<Boolean> option = new Option<>();
 
+        if (type == Communication.ECommunicationType.VOICE) {
+            boolean voice = false;
+            for (Publisher pub: publishers.values()) {
+                if (pub.getCommType() == Communication.ECommunicationType.VOICE) {
+                    voice = true;
+                    break;
+                }
+            }
+
+            if (voice) {
+                logger.error("Only one voice topic can be approved.");
+                option.ok = true;
+                option.data = false;
+                option.message = "Only one voice topic can be approved.";
+                return option;
+            }
+        }
+
         Publisher pub = new Publisher(type);
         if (!pub.assignPort()) // 토픽에서 메시지를 보내기 위해 서버를 생성하고 포트를 할당
             logger.info("CANNOT assign port");
@@ -287,13 +305,36 @@ public class Chat3JNode {
 
     // 만약, 다른 토픽에 들어가는 것이라면, 이 함수 호출
     // 해당 토픽의 다른 클라이언트와 통신을 위해 이 클라이언트도 이 토픽에 해당하는 퍼블리셔 생성
-    public void addPublisher(String topic, String type) {
+    public void addPublisher(String topic, String type, int optId) {
         // 퍼블리셔 생성
         Publisher pub;
-        if (type.equals("Voice"))
+        if (type.equals("Voice")) {
+            boolean voice = false;
+            for (Publisher p: publishers.values()) {
+                if (p.getCommType() == Communication.ECommunicationType.VOICE) {
+                    voice = true;
+                    break;
+                }
+            }
+            if (voice) {
+                logger.error("Only one voice topic can be approved.");
+
+                Option<Boolean> opt = optionList.get(optId);
+                opt.ok = true;
+                opt.data = false;
+                opt.message = "Only one voice topic can be approved.";
+                return;
+            }
+
             pub = new Publisher(Communication.ECommunicationType.VOICE);
-        else
+        }
+        else if (type.equals("Chat")) {
             pub = new Publisher(Communication.ECommunicationType.CHAT);
+        }
+        else {
+            logger.error("Invalid communication type.");
+            return;
+        }
 
         pub.assignPort();
         publishers.put(topic, pub);

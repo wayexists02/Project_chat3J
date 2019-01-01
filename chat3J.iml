@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/chat3J">
+      <sourceFolder url="file://$MODULE_DIR$/chat3J/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/chat3J/src/chat3j/test" isTestSource="true" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="kryonet-2.21-all" level="project" />
+    <orderEntry type="library" name="AndroidLibrary" level="project" />
+  </component>
+</module>
