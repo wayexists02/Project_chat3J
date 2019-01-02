@@ -75,7 +75,8 @@ public class Publisher {
         mainThread.start();
 
         // 커뮤니케이션 시작.
-        comm.start();
+        if(commType == Communication.ECommunicationType.VOICE)
+            comm.start();
 
         logger.info("[PUBLISHTER] Publisher started");
     }
