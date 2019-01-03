@@ -23,6 +23,5 @@ public class  CloseServerTask extends Task {
             conns[i].sendTCP(msg);
         }
         master.actualClose();
-        super.process(master);
     }
 }
