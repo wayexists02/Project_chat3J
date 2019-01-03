@@ -33,8 +33,9 @@ public class TopicListTask extends Task {
         }
         response.topic = topic_list;
 
-            // 토픽이 있다는 의미와 기존 인원들에 대한 정보를 보냄.
-            conn.sendTCP(response);
+        // 토픽이 있다는 의미와 기존 인원들에 대한 정보를 보냄.
+        conn.sendTCP(response);
+        super.process(master);
     }
 
 }

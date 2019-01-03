@@ -118,6 +118,15 @@ public class Chat3JMaster {
             return true;
         }
     }
+    public void broadcast(Message msg) {
+        master.sendToAllTCP(msg);
+    }
+    public void getTopicsInfo(final List<String> topics, final List<String> types) {
+        for (Topic t: topicList.values()) {
+            topics.add(t.topic());
+            types.add(t.getCommunicationType());
+        }
+    }
     public boolean leaveTopic(String topic, Connection conn) {//특정 연결객체를 가진 클라를 토픽에서 제가한다.(신규)
         if(topicList.containsKey(topic)) {//토픽에 들어간경우 해당토픽배열에서 삭제
             Topic cur_topic = topicList.get(topic);

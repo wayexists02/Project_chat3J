@@ -7,15 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d03b893-1b35-467f-95a6-581bc193fdca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/chat3j/Chat3JTargetDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/Chat3JTargetDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/NodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/NodeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/ChatCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/ChatCommunication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/Communication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Communication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/VoiceCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/VoiceCommunication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/messages/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/test/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/test/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/tasks/CloseServerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/CloseServerTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/tasks/CreateTopicTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/CreateTopicTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/tasks/EnterTopicTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/EnterTopicTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,111 +26,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/VoiceCommunication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="94" column="29" lean-forward="true" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/ChatCommunication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="104" column="25" lean-forward="true" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/Publisher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="127" column="32" selection-start-line="127" selection-start-column="32" selection-end-line="127" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3477#3478#0" expanded="true" />
-                <element signature="e#3516#3517#0" expanded="true" />
-                <element signature="e#3731#3732#0" expanded="true" />
-                <element signature="e#3775#3776#0" expanded="true" />
-                <element signature="e#5379#5380#0" expanded="true" />
-                <element signature="e#5448#5449#0" expanded="true" />
-                <element signature="e#6695#6696#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/Communication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2279#2280#0" expanded="true" />
-                <element signature="e#2315#2316#0" expanded="true" />
-                <element signature="e#2415#2416#0" expanded="true" />
-                <element signature="e#2447#2448#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="454" column="20" selection-start-line="454" selection-start-column="20" selection-end-line="454" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="170" column="54" selection-start-line="170" selection-start-column="54" selection-end-line="170" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/UpdateTopicCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state relative-caret-position="467">
+              <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#255#256#0" expanded="true" />
-                <element signature="e#277#278#0" expanded="true" />
+                <element signature="e#3508#3509#0" expanded="true" />
+                <element signature="e#3529#3530#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chat3j/NodeController.java">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/Task.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
-              <caret line="111" column="5" lean-forward="true" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3042#3043#0" expanded="true" />
-                <element signature="e#3061#3062#0" expanded="true" />
-                <element signature="e#3176#3177#0" expanded="true" />
-                <element signature="e#3202#3203#0" expanded="true" />
-                <element signature="e#3893#3894#0" expanded="true" />
-                <element signature="e#3919#3920#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="552">
+              <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="51" column="30" lean-forward="true" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/EnterTopicTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/CreateTopicTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/CloseServerTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -139,7 +106,7 @@
         <entry file="file://$PROJECT_DIR$/src/chat3j/messages/UpdateTopicListMsg.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -147,7 +114,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chat3j/messages/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
+            <state relative-caret-position="408">
               <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
             </state>
           </provider>
@@ -217,6 +184,14 @@
         <option value="$PROJECT_DIR$/src/chat3j/messages/UpdateTopicListMsg.java" />
         <option value="$PROJECT_DIR$/src/chat3j/NodeController.java" />
         <option value="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/Task.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/EnterTopicTask.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/CreateTopicTask.java" />
+        <option value="$PROJECT_DIR$/src/chat3j/server/tasks/CloseServerTask.java" />
       </list>
     </option>
   </component>
@@ -232,8 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -289,14 +262,24 @@
               <item name="chat3j" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="chat3J" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat3J" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="chat3j" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546503466363" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546503730682" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../AppData/Local/Android/sdk/platforms/android-26/android.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -366,9 +349,9 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.AudioTest" />
       <item itemvalue="Application.ClientMain (1)" />
       <item itemvalue="Application.MasterMain (1)" />
-      <item itemvalue="Application.AudioTest" />
     </list>
     <recent_temporary>
       <list>
@@ -395,7 +378,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26012793" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -404,7 +387,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924107" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.328125" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.328125" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -425,69 +408,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/CommunicationDataMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-          <folding>
-            <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/VoiceDataMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-          <folding>
-            <element signature="e#305#306#0" expanded="true" />
-            <element signature="e#332#333#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/TextDataMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-          <folding>
-            <element signature="e#190#191#0" expanded="true" />
-            <element signature="e#221#222#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/RequestTopicMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/User.java" />
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CloseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-          <folding>
-            <element signature="e#300#301#0" expanded="true" />
-            <element signature="e#332#333#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/ConnectToNewCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/CreateTopicCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -631,20 +551,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/adapters/TextAreaAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/adapters/AndroidTextArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/adapters/TextAreaAdapter.java" />
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/adapters/AndroidTextArea.java" />
     <entry file="file://$PROJECT_DIR$/src/chat3j/Chat3JTargetDevice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -663,76 +571,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Publisher.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/CheckTopicMsg.java" />
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/VoiceCommunication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="127" column="32" selection-start-line="127" selection-start-column="32" selection-end-line="127" selection-end-column="32" />
+        <state relative-caret-position="323">
+          <caret line="87" column="25" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3477#3478#0" expanded="true" />
-            <element signature="e#3516#3517#0" expanded="true" />
-            <element signature="e#3731#3732#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
-            <element signature="e#5379#5380#0" expanded="true" />
-            <element signature="e#5448#5449#0" expanded="true" />
-            <element signature="e#6695#6696#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/ChatCommunication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="104" column="25" lean-forward="true" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+        <state relative-caret-position="2328">
+          <caret line="104" column="25" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/CheckTopicMsg.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Publisher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+        <state relative-caret-position="2688">
+          <caret line="127" column="32" selection-start-line="127" selection-start-column="32" selection-end-line="127" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3477#3478#0" expanded="true" />
+            <element signature="e#3516#3517#0" expanded="true" />
+            <element signature="e#5353#5354#0" expanded="true" />
+            <element signature="e#5379#5380#0" expanded="true" />
+            <element signature="e#5422#5423#0" expanded="true" />
+            <element signature="e#5448#5449#0" expanded="true" />
+            <element signature="e#6668#6669#0" expanded="true" />
+            <element signature="e#6695#6696#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/Communication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
+        <state relative-caret-position="384">
           <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2279#2280#0" expanded="true" />
-            <element signature="e#2315#2316#0" expanded="true" />
-            <element signature="e#2415#2416#0" expanded="true" />
-            <element signature="e#2447#2448#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="170" column="54" selection-start-line="170" selection-start-column="54" selection-end-line="170" selection-end-column="54" />
+        <state relative-caret-position="10584">
+          <caret line="454" column="20" selection-start-line="454" selection-start-column="20" selection-end-line="454" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat3j/client/commands/UpdateTopicCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        <state relative-caret-position="144">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/NodeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2256">
+          <caret line="111" column="5" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -740,40 +650,74 @@
     <entry file="file://$PROJECT_DIR$/src/chat3j/messages/UpdateTopicListMsg.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/NodeController.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/messages/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="111" column="5" lean-forward="true" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
+        <state relative-caret-position="408">
+          <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/Chat3JMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3042#3043#0" expanded="true" />
-            <element signature="e#3061#3062#0" expanded="true" />
-            <element signature="e#3176#3177#0" expanded="true" />
-            <element signature="e#3202#3203#0" expanded="true" />
-            <element signature="e#3893#3894#0" expanded="true" />
-            <element signature="e#3919#3920#0" expanded="true" />
+            <element signature="e#3508#3509#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/Task.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="454" column="20" selection-start-line="454" selection-start-column="20" selection-end-line="454" selection-end-column="20" />
+        <state relative-caret-position="552">
+          <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat3j/client/VoiceCommunication.java">
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/TopicListTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="94" column="29" lean-forward="true" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="491">
+          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/RequestTopicTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="51" column="30" lean-forward="true" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/LeaveTopicTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/EnterTopicTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/CreateTopicTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat3j/server/tasks/CloseServerTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
         </state>
       </provider>
     </entry>
