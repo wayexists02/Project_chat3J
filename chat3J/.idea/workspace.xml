@@ -6,92 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d03b893-1b35-467f-95a6-581bc193fdca" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat3J.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../chat3J.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/kryonet_2_21_all.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/kryonet_2_21_all.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/chat3J_jar/chat3J.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/chat3J_jar/chat3J.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/Chat3J.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/Chat3J.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/Environment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/Environment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/MasterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/MasterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController$CommunicationType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController$CommunicationType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController$TaskObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController$TaskObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController$Task_TYPE.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController$Task_TYPE.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/NodeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode$ReceiveListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode$ReceiveListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Chat3JNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/ChatCommunication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/ChatCommunication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication$ECommunicationType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication$ECommunicationType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication$Interrupt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication$Interrupt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Communication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher$ClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher$ClientThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher$ConnectionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher$ConnectionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/Publisher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/VoiceCommunication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/VoiceCommunication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/adapters/AndroidTextArea.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/adapters/TextAreaAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CloseCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CloseCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/Command.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/Command.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CommunicationInputCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CommunicationInputCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/ConnectToNewCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/ConnectToNewCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CreateTopicCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/CreateTopicCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/DisconnectBetweenClientCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/DisconnectBetweenClientCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PostCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PostCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PublisherCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/PublisherCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/RequestTopicCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/RequestTopicCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/TopicListCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/commands/TopicListCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/data/ByteArray.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/data/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/data/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/data/TextData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/data/TextData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/data/VoiceData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/client/data/VoiceData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/CommunicationDataMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/CommunicationDataMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/DisconnectToServerMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/DisconnectToServerMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/EnterTopicMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/EnterTopicMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/LeaveTopicMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/LeaveTopicMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/ReadyForEnterMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/ReadyForEnterMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/RequestForTopicListMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/RequestForTopicListMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/RequestTopicMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/RequestTopicMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/TextDataMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/TextDataMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/TopicCreationMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/TopicCreationMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/VoiceDataMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/messages/VoiceDataMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/options/Option.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/options/Option.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster$ReceiveListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster$ReceiveListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Chat3JMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/ClientInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/ClientInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Topic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/Topic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/CloseServerTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/CloseServerTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/CreateTopicTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/CreateTopicTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/EnterTopicTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/EnterTopicTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/LeaveTopicTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/LeaveTopicTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/RequestTopicTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/RequestTopicTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/Task.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/TopicListTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/server/tasks/TopicListTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/test/AudioTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat3J/chat3j/utils/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat3J/chat3j/utils/Logger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/chat3J/chat3j/test/AudioTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/chat3J/chat3j/test/AudioTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/NodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/NodeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Chat3JNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/ChatCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/ChatCommunication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/Communication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Communication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/VoiceCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/VoiceCommunication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/adapters/AndroidTextArea.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/adapters/TextAreaAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/commands/CommunicationInputCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/commands/CommunicationInputCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/data/ByteArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/data/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/data/TextData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/data/TextData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/client/data/VoiceData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/client/data/VoiceData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/test/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/test/ClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chat3j/test/MasterMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat3j/test/MasterMain.java" afterDir="false" />
-    </list>
+    <list default="true" id="9d03b893-1b35-467f-95a6-581bc193fdca" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/src/chat3j/test/ClientMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="395">
-              <caret line="104" column="50" lean-forward="true" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
+              <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -326,7 +241,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546497851986" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546498317071" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../AppData/Local/Android/sdk/platforms/android-26/android.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -423,9 +338,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -434,7 +348,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924107" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.328125" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.328125" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -781,7 +695,7 @@
     <entry file="file://$PROJECT_DIR$/src/chat3j/test/ClientMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
-          <caret line="104" column="50" lean-forward="true" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
+          <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
         </state>
       </provider>
     </entry>
