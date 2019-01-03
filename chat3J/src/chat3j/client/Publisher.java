@@ -124,6 +124,10 @@ public class Publisher {
             return null;
     }
 
+    public void setEcho(boolean echo) {
+        this.comm.setEcho(echo);
+    }
+
     public void communicate(Data data) {
         /*
         synchronized (comm) {
@@ -135,6 +139,10 @@ public class Publisher {
             //logger.info("Received");
             comm.writeData(data);
         }
+    }
+
+    public int getNumOfPeople() {
+        return subscribers.size() + 1;
     }
 
     public void close() {

@@ -131,4 +131,9 @@ class Target implements Chat3JTargetDevice {
         data.size = targetLine.read(data.data, 0, 44100 / 25);
         return data;
     }
+
+    @Override
+    public boolean isReady() {
+        return true;
+    }
 }

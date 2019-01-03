@@ -7,6 +7,7 @@ import chat3j.utils.Logger;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -102,6 +103,14 @@ public class NodeController {
         return opt;
     }
 
+    public void setEcho(String topic, boolean b) {
+        node.setEcho(topic, b);
+    }
+
+    public Map<String, CommunicationType> getTopicList() {
+        return node.getTopicList();
+    }
+
     // Topic 으로 작업 처리를 확인 -> 30초동안 완료가 안됬으면 실패
     public boolean checkTopic(TaskObject taskObject) {
         boolean loop = true;
@@ -122,6 +131,10 @@ public class NodeController {
                 loop = false;
         }
         return false;
+    }
+
+    public int getNumOfPeople(String topic) {
+        return node.getNumOfPeople(topic);
     }
 
     public enum CommunicationType {

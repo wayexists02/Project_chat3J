@@ -2,6 +2,7 @@ package chat3j.client;
 
 import chat3j.Chat3JSourceDevice;
 import chat3j.Chat3JTargetDevice;
+import chat3j.NodeController;
 import chat3j.options.Option;
 import chat3j.client.commands.*;
 import chat3j.messages.*;
@@ -20,12 +21,13 @@ public class Chat3JNode {
 
     // 모든 클라이언트 노드는 토픽을 생성하거나 토픽에 들어가면 그 토픽을 위한 퍼블리셔가 생김.
     // 하나의 토픽 당 1개의 퍼블리셔가 있고 퍼블리셔를 이용해서 토픽 내에서 다른 클라이언트와 통신
-    private Map<String, Publisher> publishers;
+    private final Map<String, Publisher> publishers;
 
-    private Map<Integer, Device> deviceQueue;
+    private final Map<Integer, Device> deviceQueue;
+    private final Map<String, Communication.ECommunicationType> topicList;
 
     // option list. 어떤 연산이 모두 수행됬음을 알리기 위한 옵션 객체 배열
-    private Map<Integer, Option> optionList;
+    private final Map<Integer, Option> optionList;
     // 옵션 리스트의 키가 될 id.
     public int optionId;
 
@@ -52,6 +54,8 @@ public class Chat3JNode {
         this.publishers = new HashMap<>();
 
         this.deviceQueue = new HashMap<>();
+
+        this.topicList = new HashMap<>();
 
         this.optionList = new HashMap<>();
         this.optionId = 0;
@@ -110,6 +114,20 @@ public class Chat3JNode {
             checkCommand(); // 작업이 작업 큐에 있으면 수행.
             Thread.yield(); // 다른 스레드에게 프로세서 넘김.
         }
+    }
+
+    public void setEcho(String topic, boolean echo) {
+        Publisher pub = publishers.getOrDefault(topic, null);
+        if (pub != null) {
+            pub.setEcho(echo);
+        }
+    }
+
+    public int getNumOfPeople(String topic) {
+        Publisher pub = publishers.getOrDefault(topic, null);
+        if (pub != null)
+            return pub.getNumOfPeople();
+        return 0;
     }
 
     // 새로운 사람이 토픽에 들어오면 그 사람의 정보를 마스터로부터 얻어서 연결함.
@@ -412,6 +430,31 @@ public class Chat3JNode {
         }
     }
 
+    public void updateTopicList(String[] topics, String[] types) {
+        for (int i = 0; i < topics.length; i++) {
+            String topic = topics[i];
+            String type = types[i];
+
+            synchronized (topicList) {
+                topicList.clear();
+                topicList.put(topic, Communication.getType(type));
+            }
+        }
+    }
+
+    public Map<String, NodeController.CommunicationType> getTopicList() {
+        Map<String, NodeController.CommunicationType> list = new HashMap<>();
+        synchronized (topicList) {
+            for (String topic: topicList.keySet()) {
+                if (topicList.get(topic) == Communication.ECommunicationType.VOICE)
+                    list.put(topic, NodeController.CommunicationType.VOICE);
+                else if (topicList.get(topic) == Communication.ECommunicationType.CHAT)
+                    list.put(topic, NodeController.CommunicationType.CHAT);
+            }
+        }
+        return list;
+    }
+
     // 연산을 마쳤다는 것을 알림 옵션 객체 업데이트
     public <T> void optionOk(int id, T data, String msg) {
         Option<T> option = optionList.get(id);
@@ -503,9 +546,14 @@ public class Chat3JNode {
             }
             else if (obj instanceof DisconnectToServerMsg) {// 서버가 종료 되었을시 클라이언트는 종료된다.
                 DisconnectToServerMsg msg = (DisconnectToServerMsg)obj;
-
                 node.logger.info("RE: Disconnected from server");
                 actualClose();
+            }
+            else if (obj instanceof UpdateTopicListMsg) {
+                UpdateTopicListMsg msg = (UpdateTopicListMsg) obj;
+
+                UpdateTopicCommand cmd = new UpdateTopicCommand(conn, msg);
+                node.commandQueue.add(cmd);
             }
 
             node.logger.info("-----------------------");

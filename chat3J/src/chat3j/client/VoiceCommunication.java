@@ -104,6 +104,9 @@ public class VoiceCommunication extends Communication {
                 msg.type = "Voice";
                 msg.data = cData.data;
                 msg.size = cData.size;
+
+                if (echo)
+                    writeData(data);
                 pub.broadcast(msg);
             }
         });

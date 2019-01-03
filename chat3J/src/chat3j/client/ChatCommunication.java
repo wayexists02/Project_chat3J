@@ -77,7 +77,7 @@ public class ChatCommunication extends Communication {
         */
 
         //수정
-        if (target  == null) {
+        if (target  == null || !target.isReady()) {
             Logger.getLogger().error("Target device must be set");
             return null;
         }
@@ -102,6 +102,8 @@ public class ChatCommunication extends Communication {
                 TextDataMsg msg = new TextDataMsg();
                 msg.textData = cData.data;
                 msg.type = "Chat";
+                if (echo)
+                    writeData(data);
                 pub.broadcast(msg);
             }
         });

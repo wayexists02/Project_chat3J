@@ -11,6 +11,15 @@ import chat3j.client.data.Data;
  */
 public abstract class Communication {
 
+    public static ECommunicationType getType(String t) {
+        if (t.equals("Voice"))
+            return ECommunicationType.VOICE;
+        else if (t.equals("Chat"))
+            return ECommunicationType.CHAT;
+        else
+            return null;
+    }
+
     protected Thread thread;              // 커뮤니케이션 스레드
     protected Publisher pub;              // 이 커뮤니케이션 객체를 생성하고 가지고 있는 퍼블리셔 객체
     protected final Interrupt interrupt;  // 커뮤니케이션 스레드를 안전하게 종료시킬 인터럽트 객체
@@ -19,6 +28,7 @@ public abstract class Communication {
     protected boolean received;
     protected Chat3JSourceDevice source;
     protected Chat3JTargetDevice target;
+    protected boolean echo;
 
     /**
      * 커뮤니케이션 객체 생성자
@@ -38,6 +48,7 @@ public abstract class Communication {
         this.source = source;
         this.target = target;
         this.interrupt = new Interrupt();
+        this.echo = false;
         interrupt.ok = true;
     }
 
@@ -78,6 +89,10 @@ public abstract class Communication {
      */
     public void interrupt() {
         interrupt.ok = false;
+    }
+
+    public void setEcho(boolean echo) {
+        this.echo = echo;
     }
 
     public abstract void start();
