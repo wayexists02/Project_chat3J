@@ -1,5 +1,6 @@
 package chat3j.client;
 
+import chat3j.client.adapters.TextAreaAdapter;
 import chat3j.client.commands.CommunicationInputCommand;
 import chat3j.client.commands.DisconnectBetweenClientCommand;
 import chat3j.client.commands.PublisherCommand;
@@ -75,8 +76,7 @@ public class Publisher {
         mainThread.start();
 
         // 커뮤니케이션 시작.
-        if(commType == Communication.ECommunicationType.VOICE)
-            comm.start();
+        comm.start();
 
         logger.info("[PUBLISHTER] Publisher started");
     }
@@ -171,7 +171,7 @@ public class Publisher {
     // 클라이언트가 이 토픽에서 나가면 마스터로부터 메시지가 올거다. 그럼 소켓들을 검사해서
     // 끊어진 소켓은 삭제.
     public void disconnect() {
-        for (ClientThread th: subscribers) {
+        for (ClientThread th : subscribers) {
             if (!th.getClient().isConnected()) {
                 th.close();
 
@@ -242,6 +242,18 @@ public class Publisher {
         return stop;
     }
 
+    public int getSizeSubscribers() {
+        return subscribers.size();
+    }
+
+    public void setTextAreaAdapter(TextAreaAdapter adapter) {
+        ((ChatCommunication) comm).setAdapter(adapter);
+    }
+
+    public TextAreaAdapter getTextAreaAdater() {
+        return ((ChatCommunication) comm).getAdapter();
+    }
+
     // 퍼블리셔 내에서 생성되는 모든 소켓을 위한 리스너
     class ConnectionListener extends Listener {
 
@@ -267,8 +279,7 @@ public class Publisher {
                 synchronized (pub.commandQueue) {
                     pub.commandQueue.add(cmd);
                 }
-            }
-            else { // 그러나 server 객체에서 끊긴 건 검사할 필요가 없음.
+            } else { // 그러나 server 객체에서 끊긴 건 검사할 필요가 없음.
                 logger.info("[PUBLISHER] NODE disconnected.");
             }
         }
@@ -284,8 +295,7 @@ public class Publisher {
                 synchronized (pub.commandQueue) {
                     pub.commandQueue.add(cmd);
                 }
-            }
-            else if (obj instanceof TextDataMsg) {
+            } else if (obj instanceof TextDataMsg) {
                 TextDataMsg msg = (TextDataMsg) obj;
 
                 CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);

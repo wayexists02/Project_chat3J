@@ -1,5 +1,6 @@
 package chat3j.client;
 
+import chat3j.client.adapters.TextAreaAdapter;
 import chat3j.options.Option;
 import chat3j.client.commands.*;
 import chat3j.messages.*;
@@ -8,6 +9,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.FrameworkMessage;
 import com.esotericsoftware.kryonet.Listener;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.*;
@@ -121,7 +123,7 @@ public class Chat3JNode {
 
         if (type == Communication.ECommunicationType.VOICE) {
             boolean voice = false;
-            for (Publisher pub: publishers.values()) {
+            for (Publisher pub : publishers.values()) {
                 if (pub.getCommType() == Communication.ECommunicationType.VOICE) {
                     voice = true;
                     break;
@@ -310,7 +312,7 @@ public class Chat3JNode {
         Publisher pub;
         if (type.equals("Voice")) {
             boolean voice = false;
-            for (Publisher p: publishers.values()) {
+            for (Publisher p : publishers.values()) {
                 if (p.getCommType() == Communication.ECommunicationType.VOICE) {
                     voice = true;
                     break;
@@ -327,11 +329,9 @@ public class Chat3JNode {
             }
 
             pub = new Publisher(Communication.ECommunicationType.VOICE);
-        }
-        else if (type.equals("Chat")) {
+        } else if (type.equals("Chat")) {
             pub = new Publisher(Communication.ECommunicationType.CHAT);
-        }
-        else {
+        } else {
             logger.error("Invalid communication type.");
             return;
         }
@@ -413,6 +413,25 @@ public class Chat3JNode {
         return id;
     }
 
+    public int getSizeSubscribers(String topic) {
+        return publishers.get(topic).getSizeSubscribers();
+    }
+
+    public void setTextAreaAdapter(String topic, TextAreaAdapter adapter) {
+        Publisher pub = publishers.get(topic);
+        pub.setTextAreaAdapter(adapter);
+    }
+
+    public TextAreaAdapter getTextAreaAdapter(String topic) {
+        Publisher pub = publishers.get(topic);
+        return pub.getTextAreaAdater();
+    }
+
+    public Communication.ECommunicationType getCommunicationType(String topic) {
+        Publisher pub = publishers.get(topic);
+        return pub.getCommType();
+    }
+
     // 클라이언트 내에서 생성되는 connection을 위한 리스너
     class ReceiveListener extends Listener {
 
@@ -463,9 +482,8 @@ public class Chat3JNode {
 
                 TopicListCommand cmd = new TopicListCommand(conn, msg);
                 node.commandQueue.add(cmd);
-            }
-            else if (obj instanceof DisconnectToServerMsg) {// 서버가 종료 되었을시 클라이언트는 종료된다.
-                DisconnectToServerMsg msg = (DisconnectToServerMsg)obj;
+            } else if (obj instanceof DisconnectToServerMsg) {// 서버가 종료 되었을시 클라이언트는 종료된다.
+                DisconnectToServerMsg msg = (DisconnectToServerMsg) obj;
 
                 node.logger.info("RE: Disconnected from server");
                 actualClose();

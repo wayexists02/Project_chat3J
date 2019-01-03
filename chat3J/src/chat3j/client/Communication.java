@@ -11,12 +11,13 @@ import chat3j.messages.VoiceDataMsg;
  */
 public abstract class Communication {
 
-    private Thread thread;              // 커뮤니케이션 스레드
-    private Publisher pub;              // 이 커뮤니케이션 객체를 생성하고 가지고 있는 퍼블리셔 객체
-    private final Interrupt interrupt;  // 커뮤니케이션 스레드를 안전하게 종료시킬 인터럽트 객체
+    protected Thread thread;              // 커뮤니케이션 스레드
+    protected Publisher pub;              // 이 커뮤니케이션 객체를 생성하고 가지고 있는 퍼블리셔 객체
+    protected final Interrupt interrupt;  // 커뮤니케이션 스레드를 안전하게 종료시킬 인터럽트 객체
 
     /**
      * 커뮤니케이션 객체 생성자
+     *
      * @param pub
      */
     public Communication(Publisher pub) {
@@ -38,20 +39,20 @@ public abstract class Communication {
                         Thread.yield();
                     } else {
                         VoiceDataMsg msg = new VoiceDataMsg();
+                        msg.type = "Voice";
                         msg.data = ((ByteArray) data.getData()).data;
                         msg.size = ((ByteArray) data.getData()).data.length;
                         pub.broadcast(msg);
                     }
                 }
-                else if (pub.getCommType() == ECommunicationType.CHAT) { // 텍스트 메시지 통신
-                    TextDataMsg msg = new TextDataMsg();
-                    msg.textData = (String) data.getData();
-                    pub.broadcast(msg);
-                }
             }
         });
 
         thread.start();
+    }
+
+    public Publisher getPub() {
+        return pub;
     }
 
     /**
@@ -64,13 +65,15 @@ public abstract class Communication {
     /**
      * 커뮤니케이션 스레드에서 이 메소드 호출
      * 데이터를 읽어들임
+     *
      * @return
      */
     public abstract Data readData();
 
     /**
      * 데이터를 알맞은 디바이스에 출력.
-     * @param data  데이터
+     *
+     * @param data 데이터
      * @return
      */
     public abstract boolean writeData(Data data);
