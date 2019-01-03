@@ -1,4 +1,3 @@
-package chat3j.test;
 
 import chat3j.Chat3J;
 import chat3j.MasterController;

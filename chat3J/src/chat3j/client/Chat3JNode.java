@@ -1,5 +1,7 @@
 package chat3j.client;
 
+import chat3j.Chat3JSourceDevice;
+import chat3j.Chat3JTargetDevice;
 import chat3j.options.Option;
 import chat3j.client.commands.*;
 import chat3j.messages.*;
@@ -16,11 +18,11 @@ public class Chat3JNode {
 
     public Logger logger;
 
-    private User user;
-
     // 모든 클라이언트 노드는 토픽을 생성하거나 토픽에 들어가면 그 토픽을 위한 퍼블리셔가 생김.
     // 하나의 토픽 당 1개의 퍼블리셔가 있고 퍼블리셔를 이용해서 토픽 내에서 다른 클라이언트와 통신
     private Map<String, Publisher> publishers;
+
+    private Map<Integer, Device> deviceQueue;
 
     // option list. 어떤 연산이 모두 수행됬음을 알리기 위한 옵션 객체 배열
     private Map<Integer, Option> optionList;
@@ -47,8 +49,9 @@ public class Chat3JNode {
     private Thread mainThread;
 
     public Chat3JNode(String name) {
-        this.user = new User(name);
         this.publishers = new HashMap<>();
+
+        this.deviceQueue = new HashMap<>();
 
         this.optionList = new HashMap<>();
         this.optionId = 0;
@@ -116,13 +119,15 @@ public class Chat3JNode {
     }
 
     // 토픽을 최초로 생성함
-    public Option<Boolean> createTopic(String topic, Communication.ECommunicationType type) {
+    public Option<Boolean> createTopic(String topic, Communication.ECommunicationType type,
+                                       Chat3JSourceDevice source, Chat3JTargetDevice target) {
         Option<Boolean> option = new Option<>();
+        Publisher pub;
 
         if (type == Communication.ECommunicationType.VOICE) {
             boolean voice = false;
-            for (Publisher pub: publishers.values()) {
-                if (pub.getCommType() == Communication.ECommunicationType.VOICE) {
+            for (Publisher p : publishers.values()) {
+                if (p.getCommType() == Communication.ECommunicationType.VOICE) {
                     voice = true;
                     break;
                 }
@@ -135,16 +140,28 @@ public class Chat3JNode {
                 option.message = "Only one voice topic can be approved.";
                 return option;
             }
+
+            pub = new Publisher();
+            VoiceCommunication comm = new VoiceCommunication(pub, source, target);
+            pub.setCommunication(comm);
+        } else if (type == Communication.ECommunicationType.CHAT) {
+            pub = new Publisher();
+            ChatCommunication comm = new ChatCommunication(pub, source, target);
+            pub.setCommunication(comm);
+        } else {
+            option.ok = true;
+            option.data = false;
+            option.message = "INVALID communication type.";
+            return option;
         }
 
-        Publisher pub = new Publisher(type);
         if (!pub.assignPort()) // 토픽에서 메시지를 보내기 위해 서버를 생성하고 포트를 할당
             logger.info("CANNOT assign port");
 
         // 만약, 중복된 토픽을 생성하는 것이라면, 에러.
         if (publishers.containsKey(topic)) {
             logger.error("ERROR: Topic '" + topic + "' already exists!");
-            pub.destroy();
+            pub.close();
 
             option.ok = true;
             option.data = false;
@@ -279,15 +296,16 @@ public class Chat3JNode {
     }
 
     // 새로운 토픽에 들어가기 위한 함수(추가된 부분)
-    public Option<Boolean> enterTopic(String topic) {
+    public Option<Boolean> enterTopic(String topic, Chat3JSourceDevice source, Chat3JTargetDevice target) {
         Option<Boolean> option = new Option<>();
 
         RequestTopicMsg msg = new RequestTopicMsg();
         msg.topic = topic;
         msg.optionId = putOption(option);
 
-        clientToMaster.sendTCP(msg);
+        deviceQueue.put(msg.optionId, new Device(source, target));
 
+        clientToMaster.sendTCP(msg);
 
         return option;
     }
@@ -326,10 +344,18 @@ public class Chat3JNode {
                 return;
             }
 
-            pub = new Publisher(Communication.ECommunicationType.VOICE);
+            pub = new Publisher();
+            Device dev = deviceQueue.get(optId);
+            VoiceCommunication comm = new VoiceCommunication(pub, dev.source, dev.target);
+            pub.setCommunication(comm);
+            deviceQueue.remove(optId);
         }
         else if (type.equals("Chat")) {
-            pub = new Publisher(Communication.ECommunicationType.CHAT);
+            pub = new Publisher();
+            Device dev = deviceQueue.get(optId);
+            ChatCommunication comm = new ChatCommunication(pub, dev.source, dev.target);
+            pub.setCommunication(comm);
+            deviceQueue.remove(optId);
         }
         else {
             logger.error("Invalid communication type.");
@@ -423,6 +449,17 @@ public class Chat3JNode {
         }
 
         @Override
+        public void connected(Connection conn) {
+            node.logger.info("Master was connected");
+        }
+
+        @Override
+        public void disconnected(Connection conn) {
+            node.logger.info("Master was disconnected.");
+            node.actualClose();
+        }
+
+        @Override
         public void received(Connection conn, Object obj) { // 마스터로부터 메시지 수신
             if (obj instanceof FrameworkMessage) return;//tcp통신 유지를 위해 keepalive메시지를 계속 교환
             node.logger.info("");
@@ -473,6 +510,16 @@ public class Chat3JNode {
 
             node.logger.info("-----------------------");
             node.logger.info("");
+        }
+    }
+
+    class Device {
+        public Chat3JSourceDevice source;
+        public Chat3JTargetDevice target;
+
+        public Device(Chat3JSourceDevice source, Chat3JTargetDevice target) {
+            this.source = source;
+            this.target = target;
         }
     }
 }

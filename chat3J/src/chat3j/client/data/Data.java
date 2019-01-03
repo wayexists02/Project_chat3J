@@ -1,20 +1,18 @@
 package chat3j.client.data;
 
-import com.esotericsoftware.kryo.Kryo;
+import chat3j.CommunicationData;
 
 /**
  * 데이터의 최상위 클래스
  */
-public abstract class Data<T> {
+public abstract class Data {
 
-    protected T data;
+    protected CommunicationData data;
 
-    public abstract void register(Kryo kryo);
-
-    public void setData(T data) {
+    public void setData(CommunicationData data) {
         this.data = data;
     }
-    public T getData() {
+    public CommunicationData getData() {
         return data;
     }
 }

@@ -1,7 +1,8 @@
 package chat3j.client.commands;
 
+import chat3j.ByteArrayData;
+import chat3j.StringData;
 import chat3j.client.Publisher;
-import chat3j.client.data.ByteArray;
 import chat3j.client.data.TextData;
 import chat3j.client.data.VoiceData;
 import chat3j.messages.CommunicationDataMsg;
@@ -23,8 +24,9 @@ public class CommunicationInputCommand extends PublisherCommand {
         CommunicationDataMsg dataMsg = (CommunicationDataMsg) msg;
 
         if (dataMsg.type.equals("Voice")) { // 만약, 음성 메시지의 경우
-            ByteArray ba = new ByteArray();
+            ByteArrayData ba = new ByteArrayData();
             ba.data = ((VoiceDataMsg) dataMsg).data;
+            ba.size = ((VoiceDataMsg) dataMsg).size;
 
             VoiceData data = new VoiceData();
             data.setData(ba);
@@ -35,7 +37,9 @@ public class CommunicationInputCommand extends PublisherCommand {
             String str = ((TextDataMsg) dataMsg).textData;
 
             TextData data = new TextData();
-            data.setData(str);
+            StringData sData = new StringData();
+            sData.data = str;
+            data.setData(sData);
 
             pub.communicate(data);
         }

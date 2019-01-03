@@ -1,13 +1,15 @@
-package chat3j.test;
 
-import chat3j.Chat3J;
-import chat3j.NodeController;
+import chat3j.*;
 import chat3j.options.Option;
 
+import javax.sound.sampled.*;
 import java.util.List;
 import java.util.Scanner;
 
 public class ClientMain {
+
+    // javac -cp Class.jar Class.java
+    // java -cp .:Class.jar Class
 
     public static void main(String[] args) {
 
@@ -16,8 +18,12 @@ public class ClientMain {
         node.start();*/
         Chat3J chat3j = Chat3J.getInstance();
         NodeController nodeController = chat3j.createNode("testnode");
-        nodeController.setMasterInformation("127.1.1.0",10321,10322);
+        nodeController.setMasterInformation("localhost",10321,10322);
+        //nodeController.setMasterInformation("35.221.176.240",10321,10322);
         nodeController.open();
+
+        Source source = new Source();
+        Target target = new Target();
 
         int input_i;
         String input_s;
@@ -37,12 +43,12 @@ public class ClientMain {
                 case 1:
                     System.out.println("Type name of Topic.");
                     input_s = sc.nextLine();
-                    nodeController.createTopic(input_s, NodeController.CommunicationType.VOICE);
+                    nodeController.createTopic(input_s, NodeController.CommunicationType.VOICE, source, target);
                     break;
                 case 2:
                     System.out.println("Type name of Topic.");
                     input_s = sc.nextLine();
-                    nodeController.enterTopic(input_s);
+                    nodeController.enterTopic(input_s, source, target);
                     break;
                 case 3:
                     System.out.println("Type name of Topic.");
@@ -72,5 +78,57 @@ public class ClientMain {
         for (Thread t: Thread.getAllStackTraces().keySet())
             System.out.println(t.getName());
 */
+    }
+}
+
+class Source implements Chat3JSourceDevice {
+
+    private SourceDataLine sourceLine;
+
+    public Source() {
+        try {
+            AudioFormat format = new AudioFormat(44100, 16, 2, true, true);
+            DataLine.Info sourceInfo = new DataLine.Info(SourceDataLine.class, format);
+
+            sourceLine = (SourceDataLine) AudioSystem.getLine(sourceInfo);
+            sourceLine.open(format);
+            sourceLine.start();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void writeData(CommunicationData cData) {
+        ByteArrayData data = (ByteArrayData) cData;
+        sourceLine.write(data.data, 0, data.size);
+    }
+}
+
+class Target implements Chat3JTargetDevice {
+
+    private TargetDataLine targetLine;
+
+    public Target() {
+        try {
+            AudioFormat format = new AudioFormat(44100, 16, 2, true, true);
+            DataLine.Info targetInfo = new DataLine.Info(TargetDataLine.class, format);
+
+            targetLine = (TargetDataLine) AudioSystem.getLine(targetInfo);
+            targetLine.open(format);
+            targetLine.start();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public CommunicationData readData() {
+        ByteArrayData data = new ByteArrayData();
+        data.data = new byte[44100/25];
+        data.size = targetLine.read(data.data, 0, 44100 / 25);
+        return data;
     }
 }

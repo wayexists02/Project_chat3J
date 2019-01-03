@@ -1,85 +1,113 @@
 package chat3j.client;
 
-import chat3j.client.data.ByteArray;
+import chat3j.ByteArrayData;
+import chat3j.Chat3JSourceDevice;
+import chat3j.Chat3JTargetDevice;
+import chat3j.CommunicationData;
 import chat3j.client.data.Data;
 import chat3j.client.data.VoiceData;
-import chat3j.com.androidaudio.AudioLib.Player;
-import chat3j.com.androidaudio.AudioLib.Recorder;
-
-import javax.sound.sampled.*;
+import chat3j.messages.VoiceDataMsg;
+import chat3j.utils.Logger;
 
 /**
  * 오디오를 입력받아서 녹음하고, 받은 오디오를 재생하여 출력해주는 클래스
  */
 public class VoiceCommunication extends Communication {
 
+    /*
     Recorder recorder;
     Player player;
+    */
+
     private int SAMPLING_RATE_IN_HZ;
 
-//    private TargetDataLine targetLine;
-//    private SourceDataLine sourceLine;
-
+    /*
     public VoiceCommunication(Publisher pub) {
         super(pub);
         this.SAMPLING_RATE_IN_HZ = 44100;
-
         recorder = new Recorder(SAMPLING_RATE_IN_HZ);
         player = new Player(SAMPLING_RATE_IN_HZ);
+    }
+    */
 
-        /* 데스크탑 테스트용 */
-//        AudioFormat format = new AudioFormat(SAMPLING_RATE_IN_HZ, 16, 2, true, true);
-//
-//        DataLine.Info targetInfo = new DataLine.Info(TargetDataLine.class, format);
-//        DataLine.Info sourceInfo = new DataLine.Info(SourceDataLine.class, format);
-//
-//        try {
-//            targetLine = (TargetDataLine) AudioSystem.getLine(targetInfo);
-//            targetLine.open(format);
-//            targetLine.start();
-//
-//            sourceLine = (SourceDataLine) AudioSystem.getLine(sourceInfo);
-//            sourceLine.open(format);
-//            sourceLine.start();
-//
-//        } catch (Exception exc) {
-//
-//        }
+    //수정
+    public VoiceCommunication(Publisher pub, Chat3JSourceDevice source, Chat3JTargetDevice target) {
+        super(pub, source, target);
     }
 
     // Recorder로부터 AudioData를 읽어오는 메소드
     @Override
     public Data readData() {
 
+        /*
         VoiceData data = new VoiceData(SAMPLING_RATE_IN_HZ);
         data.setNumBytesRead(recorder.read((data.getData()).data, 0, data.getData().data.length));
         return data;
+        */
 
 
-        /* 데스크탑 테스트용 */
-//        VoiceData data = new VoiceData(SAMPLING_RATE_IN_HZ);
-//        final int bufsize = SAMPLING_RATE_IN_HZ;
-//        ByteArray ba = new ByteArray(bufsize);
-//        int n = targetLine.read(ba.data, 0, bufsize);
-//        data.setData(ba);
-//        data.setNumBytesRead(n);
-//        return data;
+        //수정
+        if (target  == null) {
+            Logger.getLogger().error("Target device must be set");
+            return null;
+        }
 
+        try {
+            ByteArrayData commData = (ByteArrayData) target.readData();
+            VoiceData vData = new VoiceData();
+            vData.setData(commData);
+            return vData;
+        } catch (ClassCastException exc) {
+            Logger.getLogger().error("Voice data type must be ByteArrayData");
+            return null;
+        }
     }
 
     // Player로 AudioData를 재생하는 메소드
     @Override
     public boolean writeData(Data data) {
 
+        /*
         VoiceData voiceData = (VoiceData) data;
         player.writeSamples(voiceData.getData().data, 0, voiceData.getNumBytesRead());
         return true;
+        */
 
+        // 수정
+        if (source == null) {
+            Logger.getLogger().error("Source device must be set");
+            return false;
+        }
 
-        /* 데스크탑에서 테스트용 */
-//        VoiceData vdata = (VoiceData) data;
-//        sourceLine.write(vdata.getData().data, 0, SAMPLING_RATE_IN_HZ);
-//        return true;
+        try {
+            VoiceData vData = (VoiceData) data;
+            source.writeData(vData.getData());
+            return true;
+        } catch (ClassCastException exc) {
+            Logger.getLogger().error("Voice communication can handle only VoiceData");
+            return false;
+        }
+    }
 
+    @Override
+    public void start() {
+        thread = new Thread(() -> {
+            while (interrupt.ok) {
+                VoiceData data = (VoiceData) readData();
+                if (((ByteArrayData) data.getData()).size <= 0) {
+                    Thread.yield();
+                    continue;
+                }
+
+                ByteArrayData cData = (ByteArrayData) data.getData();
+                VoiceDataMsg msg = new VoiceDataMsg();
+                msg.type = "Voice";
+                msg.data = cData.data;
+                msg.size = cData.size;
+                pub.broadcast(msg);
+            }
+        });
+
+        thread.start();
     }
 }

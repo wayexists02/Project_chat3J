@@ -22,10 +22,10 @@ import java.util.*;
  */
 public class Publisher {
 
-    private Logger logger = Logger.getLogger();
+    private final Logger logger = Logger.getLogger();
 
-    private List<ClientThread> subscribers; // 다른 클라이언트의 퍼블리셔 서버와 연결된 클라이언트들.
-    private Queue<PublisherCommand> commandQueue; // 작업 큐
+    private final List<ClientThread> subscribers; // 다른 클라이언트의 퍼블리셔 서버와 연결된 클라이언트들.
+    private final Queue<PublisherCommand> commandQueue; // 작업 큐
     private Server server; // 이 퍼블리셔를 위한 서버. 다른 클라이언트에게 메시지를 보내기 위함.
     private int tcp;
     private int udp;
@@ -33,34 +33,28 @@ public class Publisher {
     private boolean ok; // 퍼블리셔의 메인 루프는 ok=true일때만 돈다.
     private boolean stop; // 퍼블리셔 정지 및 소멸.
 
-    private Communication.ECommunicationType commType;
     private Communication comm;
 
     private Thread mainThread;
 
     private int count = 0;
 
-    public Publisher(Communication.ECommunicationType type) {
+    public Publisher() {
         this.subscribers = new LinkedList<>();
         this.commandQueue = new PriorityQueue<>();
         this.server = new Server(65536, 65536);
         this.tcp = 0;
         this.udp = 0;
+        this.comm = null;
         this.ok = true;
         this.stop = true; // 일단 true로
-        this.commType = type;
+    }
 
-        switch (commType) {
-            case VOICE:
-                comm = new VoiceCommunication(this);
-                break;
-            case CHAT:
-                comm = new ChatCommunication(this);
-                break;
-            default:
-                logger.error("Invalid communication type.");
-                break;
-        }
+    public void setCommunication(Communication comm) {
+        if (this.comm != null)
+            this.comm.interrupt();
+        this.comm = comm;
+        this.comm.start();
     }
 
     // 퍼블리셔를 시작함. 메인루프를 실행
@@ -75,9 +69,9 @@ public class Publisher {
         mainThread.start();
 
         // 커뮤니케이션 시작.
-        comm.start();
+        //comm.start();
 
-        logger.info("[PUBLISHTER] Publisher started");
+        logger.info("[PUBLISHER] Publisher started");
     }
 
     // 메인 루프
@@ -114,7 +108,7 @@ public class Publisher {
 
             count += 1;
 
-            if (count > 50) {
+            if (count > 100) {
                 count = 0;
                 logger.info("BROADCAST to " + server.getConnections().length + " subscribers.");
             }
@@ -122,11 +116,23 @@ public class Publisher {
     }
 
     public Communication.ECommunicationType getCommType() {
-        return this.commType;
+        if (comm.getClass() == VoiceCommunication.class)
+            return Communication.ECommunicationType.VOICE;
+        else if (comm.getClass() == ChatCommunication.class)
+            return Communication.ECommunicationType.CHAT;
+        else
+            return null;
     }
 
     public void communicate(Data data) {
+        /*
         synchronized (comm) {
+            comm.writeData(data);
+        }
+        */
+
+        if (comm != null) {
+            //logger.info("Received");
             comm.writeData(data);
         }
     }

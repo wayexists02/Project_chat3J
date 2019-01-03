@@ -48,11 +48,14 @@ public class NodeController {
     }
 
     // 토픽을 새로 생성한다.
-    public Option<Boolean> createTopic(final String topic, final CommunicationType type) {
+    public Option<Boolean> createTopic(final String topic,
+                                       final CommunicationType type,
+                                       final Chat3JSourceDevice source,
+                                       final Chat3JTargetDevice target) {
         if (type == CommunicationType.VOICE)
-            return node.createTopic(topic, Communication.ECommunicationType.VOICE);
+            return node.createTopic(topic, Communication.ECommunicationType.VOICE, source, target);
         else if (type == CommunicationType.CHAT)
-            return node.createTopic(topic, Communication.ECommunicationType.CHAT);
+            return node.createTopic(topic, Communication.ECommunicationType.CHAT, source, target);
 
         Option<Boolean> opt = new Option<>();
         opt.ok = true;
@@ -63,8 +66,9 @@ public class NodeController {
     }
 
     // 토픽에 입장한다.
-    public Option<Boolean> enterTopic(final String topic) {
-        return node.enterTopic(topic);
+    public Option<Boolean> enterTopic(final String topic, final Chat3JSourceDevice source,
+                                      final Chat3JTargetDevice target) {
+        return node.enterTopic(topic, source, target);
     }
 
     // 토픽을 떠난다.
