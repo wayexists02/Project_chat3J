@@ -3,7 +3,7 @@ package chat3j.client.data;
 import com.esotericsoftware.kryo.Kryo;
 
 /**
- * 미구현
+ * 데이터의 최상위 클래스
  */
 public abstract class Data<T> {
 

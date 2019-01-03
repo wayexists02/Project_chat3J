@@ -24,5 +24,6 @@ public class CreateTopicTask extends Task {
             response.success = false;
 
         conn.sendTCP(response);
+        super.process(master);
     }
 }

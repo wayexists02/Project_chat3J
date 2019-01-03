@@ -2,6 +2,7 @@ package chat3j;
 
 import chat3j.client.Chat3JNode;
 import chat3j.client.Communication;
+import chat3j.client.adapters.TextAreaAdapter;
 import chat3j.options.Option;
 import chat3j.utils.Logger;
 
@@ -118,6 +119,24 @@ public class NodeController {
                 loop = false;
         }
         return false;
+    }
+
+    public int getSizeSubscriber(String topic) {
+        if (topic.equals(""))
+            return 0;
+        return node.getSizeSubscribers(topic);
+    }
+
+    public void setTextAreaAdapter(String topic, TextAreaAdapter adapter) {
+        node.setTextAreaAdapter(topic, adapter);
+    }
+
+    public TextAreaAdapter getAdapter(String topic) {
+        return node.getTextAreaAdapter(topic);
+    }
+
+    public Communication.ECommunicationType getCommunicationType(String topic) {
+        return node.getCommunicationType(topic);
     }
 
     public enum CommunicationType {

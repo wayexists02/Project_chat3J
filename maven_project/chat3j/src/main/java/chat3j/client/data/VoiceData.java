@@ -14,13 +14,13 @@ public class VoiceData extends Data<ByteArray> {
     private int numBytesRead;
 
     public VoiceData() {
-        numBytesRead = 0;
+        numBytesRead = DEFAULT;
         data = new ByteArray();
         data.data = new byte[DEFAULT];
     }
 
     public VoiceData(final int SAMPLING_RATE_IN_HZ) {
-        numBytesRead = 0;
+        numBytesRead = DEFAULT;
         data = new ByteArray();
         data.data = new byte[SAMPLING_RATE_IN_HZ];
     }

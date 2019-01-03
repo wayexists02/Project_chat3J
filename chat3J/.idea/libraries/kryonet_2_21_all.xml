@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="kryonet-2.21-all">
     <CLASSES>
-      <root url="jar://C:/Java/kryonet-2.21/jars/production/onejar/kryonet-2.21-all.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/kryonet-2.21-all.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

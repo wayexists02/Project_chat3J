@@ -27,6 +27,9 @@ public class VoiceCommunication extends Communication {
         recorder = new Recorder(SAMPLING_RATE_IN_HZ);
         player = new Player(SAMPLING_RATE_IN_HZ);
 
+        recorder.start();
+        player.start();
+
         /* 데스크탑 테스트용 */
 //        AudioFormat format = new AudioFormat(SAMPLING_RATE_IN_HZ, 16, 2, true, true);
 //

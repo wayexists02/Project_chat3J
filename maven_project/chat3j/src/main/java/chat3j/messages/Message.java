@@ -15,12 +15,15 @@ public class Message {
         endPoint.getKryo().register(ReadyForEnterMsg.class);
         endPoint.getKryo().register(RequestForTopicListMsg.class);
         endPoint.getKryo().register(DisconnectToServerMsg.class);
+        endPoint.getKryo().register(UpdateTopicListMsg.class);
     }
 
     public static void registerMessageForPublisher(EndPoint endPoint) {
         registerMessage(endPoint);
         endPoint.getKryo().register(byte[].class);
+        endPoint.getKryo().register(CommunicationDataMsg.class);
         endPoint.getKryo().register(VoiceDataMsg.class);
+        endPoint.getKryo().register(TextDataMsg.class);
     }
 
     // 외부 요청에 의한 메시지의 경우, 이 정보는 반드시 메시지와 함께 가야함.

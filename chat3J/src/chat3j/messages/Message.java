@@ -15,6 +15,7 @@ public class Message {
         endPoint.getKryo().register(ReadyForEnterMsg.class);
         endPoint.getKryo().register(RequestForTopicListMsg.class);
         endPoint.getKryo().register(DisconnectToServerMsg.class);
+        endPoint.getKryo().register(UpdateTopicListMsg.class);
     }
 
     public static void registerMessageForPublisher(EndPoint endPoint) {

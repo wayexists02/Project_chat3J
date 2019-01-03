@@ -21,6 +21,7 @@ public class TopicListTask extends Task {
 
     @Override
     public void process(Chat3JMaster master) {
+
         RequestForTopicListMsg response = (RequestForTopicListMsg) msg;
         //현제 토픽리스트를 가져옴
         Map<String,Topic> topics = master.get_topic_list();
@@ -35,6 +36,7 @@ public class TopicListTask extends Task {
 
             // 토픽이 있다는 의미와 기존 인원들에 대한 정보를 보냄.
             conn.sendTCP(response);
+        super.process(master);
     }
 
 }

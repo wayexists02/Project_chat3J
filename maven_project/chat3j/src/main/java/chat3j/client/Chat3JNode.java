@@ -1,5 +1,6 @@
 package chat3j.client;
 
+import chat3j.client.adapters.TextAreaAdapter;
 import chat3j.options.Option;
 import chat3j.client.commands.*;
 import chat3j.messages.*;
@@ -8,6 +9,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.FrameworkMessage;
 import com.esotericsoftware.kryonet.Listener;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.*;
@@ -118,6 +120,24 @@ public class Chat3JNode {
     // 토픽을 최초로 생성함
     public Option<Boolean> createTopic(String topic, Communication.ECommunicationType type) {
         Option<Boolean> option = new Option<>();
+
+        if (type == Communication.ECommunicationType.VOICE) {
+            boolean voice = false;
+            for (Publisher pub : publishers.values()) {
+                if (pub.getCommType() == Communication.ECommunicationType.VOICE) {
+                    voice = true;
+                    break;
+                }
+            }
+
+            if (voice) {
+                logger.error("Only one voice topic can be approved.");
+                option.ok = true;
+                option.data = false;
+                option.message = "Only one voice topic can be approved.";
+                return option;
+            }
+        }
 
         Publisher pub = new Publisher(type);
         if (!pub.assignPort()) // 토픽에서 메시지를 보내기 위해 서버를 생성하고 포트를 할당
@@ -287,13 +307,34 @@ public class Chat3JNode {
 
     // 만약, 다른 토픽에 들어가는 것이라면, 이 함수 호출
     // 해당 토픽의 다른 클라이언트와 통신을 위해 이 클라이언트도 이 토픽에 해당하는 퍼블리셔 생성
-    public void addPublisher(String topic, String type) {
+    public void addPublisher(String topic, String type, int optId) {
         // 퍼블리셔 생성
         Publisher pub;
-        if (type.equals("Voice"))
+        if (type.equals("Voice")) {
+            boolean voice = false;
+            for (Publisher p : publishers.values()) {
+                if (p.getCommType() == Communication.ECommunicationType.VOICE) {
+                    voice = true;
+                    break;
+                }
+            }
+            if (voice) {
+                logger.error("Only one voice topic can be approved.");
+
+                Option<Boolean> opt = optionList.get(optId);
+                opt.ok = true;
+                opt.data = false;
+                opt.message = "Only one voice topic can be approved.";
+                return;
+            }
+
             pub = new Publisher(Communication.ECommunicationType.VOICE);
-        else
+        } else if (type.equals("Chat")) {
             pub = new Publisher(Communication.ECommunicationType.CHAT);
+        } else {
+            logger.error("Invalid communication type.");
+            return;
+        }
 
         pub.assignPort();
         publishers.put(topic, pub);
@@ -372,6 +413,25 @@ public class Chat3JNode {
         return id;
     }
 
+    public int getSizeSubscribers(String topic) {
+        return publishers.get(topic).getSizeSubscribers();
+    }
+
+    public void setTextAreaAdapter(String topic, TextAreaAdapter adapter) {
+        Publisher pub = publishers.get(topic);
+        pub.setTextAreaAdapter(adapter);
+    }
+
+    public TextAreaAdapter getTextAreaAdapter(String topic) {
+        Publisher pub = publishers.get(topic);
+        return pub.getTextAreaAdater();
+    }
+
+    public Communication.ECommunicationType getCommunicationType(String topic) {
+        Publisher pub = publishers.get(topic);
+        return pub.getCommType();
+    }
+
     // 클라이언트 내에서 생성되는 connection을 위한 리스너
     class ReceiveListener extends Listener {
 
@@ -422,12 +482,17 @@ public class Chat3JNode {
 
                 TopicListCommand cmd = new TopicListCommand(conn, msg);
                 node.commandQueue.add(cmd);
-            }
-            else if (obj instanceof DisconnectToServerMsg) {// 서버가 종료 되었을시 클라이언트는 종료된다.
-                DisconnectToServerMsg msg = (DisconnectToServerMsg)obj;
+            } else if (obj instanceof DisconnectToServerMsg) {// 서버가 종료 되었을시 클라이언트는 종료된다.
+                DisconnectToServerMsg msg = (DisconnectToServerMsg) obj;
 
                 node.logger.info("RE: Disconnected from server");
                 actualClose();
+            } else if (obj instanceof UpdateTopicListMsg) {// 토픽 목록에 변동이 있을시 서버에서 받는 메시지.
+                UpdateTopicListMsg msg = (UpdateTopicListMsg) obj;
+                node.logger.info("RE: Update topic list");
+
+                TopicListCommand cmd = new TopicListCommand(conn, msg);
+                node.commandQueue.add(cmd);
             }
 
             node.logger.info("-----------------------");

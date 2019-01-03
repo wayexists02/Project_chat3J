@@ -30,5 +30,6 @@ public class LeaveTopicTask extends Task {
         response.ok = true;
 
         conn.sendTCP(response);
+        super.process(master);
     }
 }

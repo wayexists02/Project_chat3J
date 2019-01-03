@@ -49,5 +49,6 @@ public class RequestTopicTask extends Task {
             // 토픽이 있다는 의미와 기존 인원들에 대한 정보를 보냄.
             conn.sendTCP(response);
         }
+        super.process(master);
     }
 }

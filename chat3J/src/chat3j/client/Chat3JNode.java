@@ -487,6 +487,12 @@ public class Chat3JNode {
 
                 node.logger.info("RE: Disconnected from server");
                 actualClose();
+            } else if (obj instanceof UpdateTopicListMsg) {// 토픽 목록에 변동이 있을시 서버에서 받는 메시지.
+                UpdateTopicListMsg msg = (UpdateTopicListMsg) obj;
+                node.logger.info("RE: Update topic list");
+
+                TopicListCommand cmd = new TopicListCommand(conn, msg);
+                node.commandQueue.add(cmd);
             }
 
             node.logger.info("-----------------------");

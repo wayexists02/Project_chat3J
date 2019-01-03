@@ -1,10 +1,12 @@
 package chat3j.client;
 
+import chat3j.client.adapters.TextAreaAdapter;
 import chat3j.client.commands.CommunicationInputCommand;
 import chat3j.client.commands.DisconnectBetweenClientCommand;
 import chat3j.client.commands.PublisherCommand;
 import chat3j.client.data.Data;
 import chat3j.messages.Message;
+import chat3j.messages.TextDataMsg;
 import chat3j.messages.VoiceDataMsg;
 import chat3j.utils.Logger;
 import com.esotericsoftware.kryonet.Client;
@@ -54,8 +56,10 @@ public class Publisher {
                 comm = new VoiceCommunication(this);
                 break;
             case CHAT:
+                comm = new ChatCommunication(this);
                 break;
             default:
+                logger.error("Invalid communication type.");
                 break;
         }
     }
@@ -88,7 +92,7 @@ public class Publisher {
             // 작업 큐에 작업이 있으면 수행 없으면 패스.
             // 작업이 너무 많으면 3개만 수행.
             while (!commandQueue.isEmpty() && count > 0) {
-                synchronized (this) {
+                synchronized (commandQueue) {
                     PublisherCommand cmd = commandQueue.poll();
                     cmd.exec(this);
                 }
@@ -102,10 +106,11 @@ public class Publisher {
         stop = true;
     }
 
+    // 이 퍼블리셔가 있는 토픽 내의 모든 인원에게 메시지를 브로드캐스트
     public void broadcast(Message msg) {
         //logger.info("BROADCAST to " + subscribers.size() + " subscribers.");
 
-        synchronized (this) {
+        synchronized (Integer.class) {
             server.sendToAllUDP(msg);
 
             count += 1;
@@ -117,8 +122,12 @@ public class Publisher {
         }
     }
 
+    public Communication.ECommunicationType getCommType() {
+        return this.commType;
+    }
+
     public void communicate(Data data) {
-        synchronized (this) {
+        synchronized (comm) {
             comm.writeData(data);
         }
     }
@@ -145,7 +154,7 @@ public class Publisher {
             //logger.info("TCP: " + tcp + ", UDP: " + udp);
             client.connect(10000, addr, tcp, udp);
 
-            synchronized (this) {
+            synchronized (subscribers) {
                 subscribers.add(th);
             }
 
@@ -162,11 +171,11 @@ public class Publisher {
     // 클라이언트가 이 토픽에서 나가면 마스터로부터 메시지가 올거다. 그럼 소켓들을 검사해서
     // 끊어진 소켓은 삭제.
     public void disconnect() {
-        for (ClientThread th: subscribers) {
+        for (ClientThread th : subscribers) {
             if (!th.getClient().isConnected()) {
                 th.close();
 
-                synchronized (this) {
+                synchronized (subscribers) {
                     subscribers.remove(th);
                 }
             }
@@ -233,6 +242,18 @@ public class Publisher {
         return stop;
     }
 
+    public int getSizeSubscribers() {
+        return subscribers.size();
+    }
+
+    public void setTextAreaAdapter(TextAreaAdapter adapter) {
+        ((ChatCommunication) comm).setAdapter(adapter);
+    }
+
+    public TextAreaAdapter getTextAreaAdater() {
+        return ((ChatCommunication) comm).getAdapter();
+    }
+
     // 퍼블리셔 내에서 생성되는 모든 소켓을 위한 리스너
     class ConnectionListener extends Listener {
 
@@ -255,11 +276,10 @@ public class Publisher {
                 logger.info("[SUBSCRIBER] NODE disconnected.");
                 DisconnectBetweenClientCommand cmd = new DisconnectBetweenClientCommand();
 
-                synchronized (Publisher.this) {
+                synchronized (pub.commandQueue) {
                     pub.commandQueue.add(cmd);
                 }
-            }
-            else { // 그러나 server 객체에서 끊긴 건 검사할 필요가 없음.
+            } else { // 그러나 server 객체에서 끊긴 건 검사할 필요가 없음.
                 logger.info("[PUBLISHER] NODE disconnected.");
             }
         }
@@ -272,7 +292,15 @@ public class Publisher {
 
                 CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);
 
-                synchronized (Publisher.this) {
+                synchronized (pub.commandQueue) {
+                    pub.commandQueue.add(cmd);
+                }
+            } else if (obj instanceof TextDataMsg) {
+                TextDataMsg msg = (TextDataMsg) obj;
+
+                CommunicationInputCommand cmd = new CommunicationInputCommand(conn, msg);
+
+                synchronized (pub.commandQueue) {
                     pub.commandQueue.add(cmd);
                 }
             }

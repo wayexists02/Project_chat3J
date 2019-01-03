@@ -32,5 +32,6 @@ public class EnterTopicTask extends Task {
         topic.broadcast(newmsg);
         //마지막으로 새로 온 놈을 토픽에 추가
         topic.addClient(conn, response.tcp, response.udp);
+        super.process(master);
     }
 }
